@@ -1,0 +1,136 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Full Screen Morphing Search\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-11-22 02:53+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: \n"
+"Language: \n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Loco-Version: 2.2.0; wp-4.9.8"
+
+#: class-full-screen-morphing-search.php:87
+msgctxt "placeholder"
+msgid "Search &hellip;"
+msgstr ""
+
+#: functions-full-screen-morphing-search.php:39
+msgid "FSMS Plugin"
+msgstr ""
+
+#: functions-full-screen-morphing-search.php:47
+msgid "FSMS Colors"
+msgstr ""
+
+#: functions-full-screen-morphing-search.php:58
+msgid "FSMS Main Backgroung Color"
+msgstr ""
+
+#: functions-full-screen-morphing-search.php:59
+msgid "Change the main background color"
+msgstr ""
+
+#: functions-full-screen-morphing-search.php:80
+msgid "FSMS Close Icon Color"
+msgstr ""
+
+#: functions-full-screen-morphing-search.php:81
+msgid "Change the close icon color"
+msgstr ""
+
+#: functions-full-screen-morphing-search.php:102
+msgid "FSMS Search &hellip; text Color"
+msgstr ""
+
+#: functions-full-screen-morphing-search.php:103
+msgid "Change the search &hellip; text color"
+msgstr ""
+
+#: functions-full-screen-morphing-search.php:121
+msgid "FSMS Magnifier Submit Color"
+msgstr ""
+
+#: functions-full-screen-morphing-search.php:122
+msgid "Change the magnifier submit  color"
+msgstr ""
+
+#: functions-full-screen-morphing-search.php:143
+msgid "FSMS Headings Color"
+msgstr ""
+
+#: functions-full-screen-morphing-search.php:144
+msgid "Change the headings color"
+msgstr ""
+
+#: functions-full-screen-morphing-search.php:162
+msgid "FSMS Columns Background Color"
+msgstr ""
+
+#: functions-full-screen-morphing-search.php:163
+msgid "Change the columns background color"
+msgstr ""
+
+#: functions-full-screen-morphing-search.php:181
+msgid "FSMS Columns Hover Background Color"
+msgstr ""
+
+#: functions-full-screen-morphing-search.php:182
+msgid "Change the columns hover background color"
+msgstr ""
+
+#: functions-full-screen-morphing-search.php:203
+msgid "FSMS Links Color"
+msgstr ""
+
+#: functions-full-screen-morphing-search.php:204
+msgid "Change the links color"
+msgstr ""
+
+#: functions-full-screen-morphing-search.php:222
+msgid "FSMS Links Hover Color"
+msgstr ""
+
+#: functions-full-screen-morphing-search.php:223
+msgid "Change the links hover color"
+msgstr ""
+
+#: functions-full-screen-morphing-search.php:239
+msgid "FSMS Search Form"
+msgstr ""
+
+#: functions-full-screen-morphing-search.php:250
+msgid "FSMS Search Form Text"
+msgstr ""
+
+#: functions-full-screen-morphing-search.php:251
+msgid ""
+"Change the search form text. If leaved blank, it will return to original "
+"value !"
+msgstr ""
+
+#. Name of the plugin
+msgid "Full Screen Morphing Search"
+msgstr ""
+
+#. Description of the plugin
+msgid ""
+"Effect for any WordPress search input that morphs into a fullscreen overlay."
+msgstr ""
+
+#. URI of the plugin
+msgid "http://tympanus.net/codrops/2014/11/04/simple-morphing-search/"
+msgstr ""
+
+#. Author of the plugin
+msgid "LebCit"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://lebcit.tk/"
+msgstr ""
