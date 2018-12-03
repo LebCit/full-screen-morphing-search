@@ -14,6 +14,34 @@ function full_screen_morphing_search_thumb() {
 add_action( 'init', 'full_screen_morphing_search_thumb' );
 
 /**
+ * This outputs the javascript needed to automate the live settings preview.
+ * Also keep in mind that this function isn't necessary unless your settings
+ * are using 'transport'=>'postMessage' instead of the default 'transport'
+ * => 'refresh'.
+ *
+ * Used by hook: 'customize_preview_init'
+ */
+function fsmsp_customize_preview_js() {
+	$handle    = 'fsmsp-customize-preview';
+	$src       = plugins_url( 'assets/js/customize-preview.js', __FILE__ );
+	$deps      = array( 'customize-preview' );
+	$ver       = '0.1';
+	$in_footer = true;
+	wp_enqueue_script( $handle, $src, $deps, $ver, $in_footer );
+	wp_localize_script(
+		'fsmsp-customize-preview',
+		'fsmsp_cp',
+		array(
+			'fsmsp_article_icon'     => '<img src="' . esc_url( plugins_url( 'assets/img/article.png', __FILE__ ) ) . '">',
+			'fsmsp_category_icon'    => '<img src="' . esc_url( plugins_url( 'assets/img/category.png', __FILE__ ) ) . '">',
+			'fsmsp_tag_icon'         => '<img src="' . esc_url( plugins_url( 'assets/img/tag.png', __FILE__ ) ) . '">',
+			'fsmsp_placeholder_text' => esc_attr( 'Search &hellip;' ),
+		)
+	);
+}
+add_action( 'customize_preview_init', 'fsmsp_customize_preview_js' );
+
+/**
  * Require Kirki.
  */
 require_once dirname( __FILE__ ) . '/assets/kirki/kirki.php';
