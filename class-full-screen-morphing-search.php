@@ -84,7 +84,8 @@ class Full_Screen_Morphing_Search {
 		// Setting the placeholder as a variable to output the option depending on the case.
 		$fsmsp_options     = get_option( 'fsmsp_options' ); // Associative Array 'fsmsp_options'.
 		$fsmsp_placeholder = $fsmsp_options['fsmsp_search_form_text']; // Selecting the key to get the value.
-		if ( '' !== $fsmsp_placeholder ) {
+		// phpcs:ignore WordPress.PHP.StrictComparisons.LooseComparison -- strict comparison not working !
+		if ( '' != $fsmsp_placeholder ) {
 			$fsmsp_placeholder = esc_attr( $fsmsp_placeholder );
 		} else {
 			$fsmsp_placeholder = esc_attr_x( 'Search &hellip;', 'placeholder', 'full-screen-morphing-search' );
@@ -113,15 +114,28 @@ class Full_Screen_Morphing_Search {
 						$fsmsprp->the_post();
 						?>
 					<div class="dummy-media-object">
+						<?php
+						if ( has_post_thumbnail() ) {
+							?>
 						<a href="<?php echo the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
 							<?php
-							if ( has_post_thumbnail() ) {
-								echo the_post_thumbnail( 'full-screen-morphing-search-plugin-thumb', array( 'class' => 'round' ) );
-							} else {
-								echo '<img src="' . esc_url( plugins_url( 'assets/img/article.png', __FILE__ ) ) . '" > ';
-							}
+						} else {
 							?>
-						</a>                                     
+							<a href="<?php echo the_permalink(); ?>" class="fsmsp-article-link" title="<?php the_title_attribute(); ?>">
+							<?php
+						}
+						if ( has_post_thumbnail() ) {
+							echo the_post_thumbnail( 'full-screen-morphing-search-plugin-thumb', array( 'class' => 'round' ) );
+						} else {
+							// phpcs:ignore WordPress.PHP.StrictComparisons.LooseComparison -- strict comparison not working !
+							if ( '' == $fsmsp_options['fsmsp_article_icon'] ) {
+								echo '<img src="' . esc_url( plugins_url( 'assets/img/article.png', __FILE__ ) ) . '" >';
+							} else {
+								full_screen_morphing_search_article_icon();
+							}
+						}
+						?>
+						</a>
 						<h3><a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a></h3>
 					</div>
 						<?php
@@ -151,9 +165,18 @@ class Full_Screen_Morphing_Search {
 						$fsmspcat      = str_replace( ' ', '&nbsp;', esc_html( $fsmspcat ) );
 						if ( $i < 6 ) {
 							?>
-							<div class="dummy-media-object">
+							<div class="dummy-media-object fsmsp-tc-child">
+								<span class="fsmsp-category-image">
+									<?php
+									// phpcs:ignore WordPress.PHP.StrictComparisons.LooseComparison -- strict comparison not working !
+									if ( '' == $fsmsp_options['fsmsp_category_icon'] ) {
+										echo '<img src="' . esc_url( plugins_url( 'assets/img/category.png', __FILE__ ) ) . '" >';
+									} else {
+										full_screen_morphing_search_category_icon();
+									}
+									?>
+								</span>
 								<?php
-								echo '<img src="' . esc_url( plugins_url( 'assets/img/category.png', __FILE__ ) ) . '" > ';
 								print "<h3><a href='" . esc_url( $fsmspcat_link ) . "'>" . esc_html( $fsmspcat . ' (' . $fsmsptc_count . ')' ) . '</a></h3>';
 								?>
 							</div>
@@ -184,9 +207,18 @@ class Full_Screen_Morphing_Search {
 						$fsmsptag = str_replace( ' ', '&nbsp;', esc_html( $fsmsptag ) );
 						if ( $i < 6 ) {
 							?>
-							<div class="dummy-media-object">
+							<div class="dummy-media-object fsmsp-tt-child">
+								<span class="fsmsp-tag-image">
+									<?php
+									// phpcs:ignore WordPress.PHP.StrictComparisons.LooseComparison -- strict comparison not working !
+									if ( '' == $fsmsp_options['fsmsp_tag_icon'] ) {
+										echo '<img src="' . esc_url( plugins_url( 'assets/img/tag.png', __FILE__ ) ) . '" >';
+									} else {
+										full_screen_morphing_search_tag_icon();
+									}
+									?>
+								</span>
 								<?php
-								echo '<img src="' . esc_url( plugins_url( 'assets/img/tag.png', __FILE__ ) ) . '" > ';
 								print "<h3><a href='" . esc_url( $tag_link ) . "'>" . esc_html( $fsmsptag . ' (' . $fsmsptt_count . ')' ) . '</a></h3>';
 								?>
 							</div>
