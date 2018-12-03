@@ -112,6 +112,26 @@ if ( class_exists( 'Kirki' ) ) {
 			),
 		)
 	);
+	// FSMS Input Text Color.
+	Kirki::add_field(
+		'fsmsp_kirki',
+		array(
+			'type'        => 'color-alpha',
+			'settings'    => 'fsmsp_input_text_color',
+			'label'       => __( 'FSMS Input Text Color', 'full-screen-morphing-search' ),
+			'description' => esc_attr__( 'Change the input text color', 'full-screen-morphing-search' ),
+			'section'     => 'fsmsp_color',
+			'default'     => '#ec5a62',
+			'transport'   => 'auto',
+			'output'      => array(
+				array(
+					'element'  => '.morphsearch-input',
+					'property' => 'color',
+					'suffix'   => ' !important',
+				),
+			),
+		)
+	);
 	// FSMS Magnifier Submit Color.
 	Kirki::add_field(
 		'fsmsp_kirki',
