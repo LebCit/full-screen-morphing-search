@@ -4,7 +4,7 @@ Tags: search, full screen search, morphing  search, search overlay,  jQuery UI a
 Requires at least: 4.6  
 Tested up to: 5.0  
 Requires PHP: 5.6  
-Stable tag: 2.1  
+Stable tag: 2.2  
 License: GPLv2 or later  
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -13,6 +13,8 @@ Responsive Full Screen Morphing Search Page Overlay With Predictive Autocomplete
 ## Description
 
 ### Full Screen Morphing Search
+
+**Please Read The <a href="https://wordpress.org/plugins/full-screen-morphing-search/#faq" title="Frequently Asked Questions">FAQ</a>**
 
 Effect for any WordPress search input that morphs into a fullscreen overlay.  
 Enlarge the search input and show 5 most recent posts, 5 most used categories and tags with counter.  
@@ -59,6 +61,13 @@ The tag icon is made by <a href="https://www.flaticon.com/authors/freepik" title
 
 ## Frequently Asked Questions
 
+### Getting an Error After Updating to Version 2.1 and Above !
+1- Open the Customizer (click on Customize in wp admin bar).  
+2- Open 'FSMS Plugin' panel then open 'FSMS Icons' section.  
+3- Replace the 3 default icons, uncheck the 3 checkboxes.  
+4- Publish.  
+5- Now you can change this options as you like with no errors.
+
 ### Recent posts thumbnails are not round !
 
 You will have to use a thumbnail regenerator.  
@@ -79,7 +88,7 @@ Take a look at the <a href="https://github.com/LebCit/full-screen-morphing-searc
 
 First make sure that you have used a thumbnail regenerator, see first FAQ.  
 Then, click on the checkbox option **Icon/Image Round or Not ?!**  
-If the new Icon/Image is already round (like the default one of category anf tag), this option will have no effect !
+If the new Icon/Image is already round (like the default one of category and tag), this option will have no effect !
 
 ### Autocomplete predicts only posts and pages !
 
@@ -116,6 +125,10 @@ First type something in the input text field, then change the input text color.
 Old screenshot.
 
 ## Changelog
+
+### 2.2 =
+* Corrected MutationObserver for categories and tags icons.
+* Updated readme FAQ section for Undefined index Error.
 
 ### 2.1 =
 * Added ability to change icons from Customizer.
