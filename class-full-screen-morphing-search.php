@@ -64,10 +64,13 @@ class Full_Screen_Morphing_Search {
 
 		// Load Javascript.
 		wp_enqueue_script( $this->plugin->name, $this->plugin->url . 'assets/js/full-screen-morphing-search.js', array( 'jquery' ), '1.0', true );
-		$fsmsp_settings = array(
-			'fsmsp_search_text' => get_option( 'fsmsp_options' )['fsmsp_search_form_text'],
+		wp_localize_script(
+			$this->plugin->name,
+			'fsmsp_vars',
+			array(
+				'fsmsp_is_customize_preview' => is_customize_preview(),
+			)
 		);
-		wp_localize_script( 'full-screen-morphing-search', 'fsmsp_set', $fsmsp_settings );
 	}
 
 	/**
