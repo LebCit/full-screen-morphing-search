@@ -281,4 +281,171 @@ if ( class_exists( 'Kirki' ) ) {
 			),
 		)
 	);
+	// Add Icons Section.
+	Kirki::add_section(
+		'fsmsp_icons',
+		array(
+			'title'    => __( 'FSMS Icons', 'full-screen-morphing-search' ),
+			'priority' => 15,
+			'panel'    => 'fsmsp_panel',
+		)
+	);
+	/**
+	 * Function to display an uploaded image to the media library.
+	 * 1- Retrive the images' URL, here by the option.
+	 * 2- Convert the attachment URL into a post ID. @see https://developer.wordpress.org/reference/functions/attachment_url_to_postid/
+	 * 3- Choose applied classes depending on the classes option.
+	 * 4- Display the image with some parameters. @see https://developer.wordpress.org/reference/functions/wp_get_attachment_image/
+	 * 5- Set this function as a render_callback in the partial_refersh module of the option.
+	 */
+	function full_screen_morphing_search_article_icon() {
+		$image_url         = get_option( 'fsmsp_options' )['fsmsp_article_icon'];
+		$attachment_id     = attachment_url_to_postid( $image_url ); // Tries to convert an attachment URL into a post ID.
+		$article_i_classes = get_option( 'fsmsp_options' )['fsmsp_article_i_classes'];
+		$classes;
+		if ( true === $article_i_classes ) {
+			$classes = 'round fsmsp-article-icon';
+		} else {
+			$classes = 'fsmsp-article-icon';
+		}
+		echo wp_get_attachment_image( $attachment_id, 'thumbnail', '', array( 'class' => $classes ) ); // Get an HTML img element representing an image attachment.
+	}
+	// FSMS Article Icon.
+	Kirki::add_field(
+		'fsmsp_kirki',
+		array(
+			'type'            => 'image',
+			'settings'        => 'fsmsp_article_icon',
+			'label'           => __( 'FSMS Article Icon', 'full-screen-morphing-search' ),
+			'description'     => esc_attr__( 'Change the article icon.', 'full-screen-morphing-search' ),
+			'section'         => 'fsmsp_icons',
+			'default'         => '',
+			'partial_refresh' => array(
+				'fsmsp_article_icon' => array(
+					'selector'        => 'div.dummy-media-object a.fsmsp-article-link',
+					'render_callback' => 'full_screen_morphing_search_article_icon',
+				),
+			),
+		)
+	);
+	// FSMS Article Icon/Image Classes.
+	Kirki::add_field(
+		'fsmsp_kirki',
+		array(
+			'type'            => 'checkbox',
+			'settings'        => 'fsmsp_article_i_classes',
+			'label'           => __( 'Article Icon/Image Round or Not ?!', 'full-screen-morphing-search' ),
+			'section'         => 'fsmsp_icons',
+			'default'         => true,
+			'partial_refresh' => array(
+				'fsmsp_article_i_classes' => array(
+					'selector'        => 'div.dummy-media-object a.fsmsp-article-link',
+					'render_callback' => 'full_screen_morphing_search_article_icon',
+				),
+			),
+		)
+	);
+
+	/**
+	 * Function to display an uploaded image to the media library.
+	 */
+	function full_screen_morphing_search_category_icon() {
+		$imagecat_url       = get_option( 'fsmsp_options' )['fsmsp_category_icon'];
+		$attachmentcat_id   = attachment_url_to_postid( $imagecat_url );
+		$category_i_classes = get_option( 'fsmsp_options' )['fsmsp_category_i_classes'];
+		$classes;
+		if ( true === $category_i_classes ) {
+			$classes = 'round fsmsp-category-icon';
+		} else {
+			$classes = 'fsmsp-category-icon';
+		}
+		echo wp_get_attachment_image( $attachmentcat_id, 'thumbnail', '', array( 'class' => $classes ) );
+	}
+	// FSMS Category Icon.
+	Kirki::add_field(
+		'fsmsp_kirki',
+		array(
+			'type'            => 'image',
+			'settings'        => 'fsmsp_category_icon',
+			'label'           => __( 'FSMS Category Icon', 'full-screen-morphing-search' ),
+			'description'     => esc_attr__( 'Change the category icon.', 'full-screen-morphing-search' ),
+			'section'         => 'fsmsp_icons',
+			'default'         => '',
+			'partial_refresh' => array(
+				'fsmsp_category_icon' => array(
+					'selector'        => 'span.fsmsp-category-image',
+					'render_callback' => 'full_screen_morphing_search_category_icon',
+				),
+			),
+		)
+	);
+	// FSMS Category Icon/Image Classes.
+	Kirki::add_field(
+		'fsmsp_kirki',
+		array(
+			'type'            => 'checkbox',
+			'settings'        => 'fsmsp_category_i_classes',
+			'label'           => __( 'Category Icon/Image Round or Not ?!', 'full-screen-morphing-search' ),
+			'section'         => 'fsmsp_icons',
+			'default'         => true,
+			'partial_refresh' => array(
+				'fsmsp_category_i_classes' => array(
+					'selector'        => 'span.fsmsp-category-image',
+					'render_callback' => 'full_screen_morphing_search_category_icon',
+				),
+			),
+		)
+	);
+
+	/**
+	 * Function to display an uploaded image to the media library.
+	 */
+	function full_screen_morphing_search_tag_icon() {
+		$imagetag_url     = get_option( 'fsmsp_options' )['fsmsp_tag_icon'];
+		$attachmenttag_id = attachment_url_to_postid( $imagetag_url );
+		$tag_i_classes    = get_option( 'fsmsp_options' )['fsmsp_tag_i_classes'];
+		$classes;
+		if ( true === $tag_i_classes ) {
+			$classes = 'round fsmsp-tag-icon';
+		} else {
+			$classes = 'fsmsp-tag-icon';
+		}
+		echo wp_get_attachment_image( $attachmenttag_id, 'thumbnail', '', array( 'class' => $classes ) );
+	}
+	// FSMS Tag Icon.
+	Kirki::add_field(
+		'fsmsp_kirki',
+		array(
+			'type'            => 'image',
+			'settings'        => 'fsmsp_tag_icon',
+			'label'           => __( 'FSMS Tag Icon', 'full-screen-morphing-search' ),
+			'description'     => esc_attr__( 'Change the tag icon.', 'full-screen-morphing-search' ),
+			'section'         => 'fsmsp_icons',
+			'default'         => '',
+			'partial_refresh' => array(
+				'fsmsp_tag_icon' => array(
+					'selector'        => 'span.fsmsp-tag-image',
+					'render_callback' => 'full_screen_morphing_search_tag_icon',
+				),
+			),
+		)
+	);
+	// FSMS Tag Icon/Image Classes.
+	Kirki::add_field(
+		'fsmsp_kirki',
+		array(
+			'type'            => 'checkbox',
+			'settings'        => 'fsmsp_tag_i_classes',
+			'label'           => __( 'Tag Icon/Image Round or Not ?!', 'full-screen-morphing-search' ),
+			'section'         => 'fsmsp_icons',
+			'default'         => true,
+			'partial_refresh' => array(
+				'fsmsp_tag_i_classes' => array(
+					'selector'        => 'span.fsmsp-tag-image',
+					'render_callback' => 'full_screen_morphing_search_tag_icon',
+				),
+			),
+		)
+	);
+
 }
