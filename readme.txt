@@ -2,9 +2,9 @@
 Contributors: lebcit
 Tags: search, full screen search, morphing search, search overlay,  jQuery UI autocomplete
 Requires at least: 4.6
-Tested up to: 4.9.8
+Tested up to: 5.0
 Requires PHP: 5.6
-Stable tag: 2.0
+Stable tag: 2.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -23,6 +23,7 @@ There are no settings for this plugin. Simply activate it, click on any search i
 **PLEASE, MAKE SURE TO HAVE AT LEAST ONE POST WITH ONE CATEGORY AND ONE TAG BEFORE ACTIVATING**  
 
 **As of version 2.0**, head over the Customizer, look for **FSMS Plugin**, design it as you want !  
+You can change colors, search placeholder's text and default icons with a styling option !  
 
 Don't forget to take a look at the <a href="https://wordpress.org/plugins/full-screen-morphing-search/faq/" title="Frequently Asked Questions">FAQ</a> Section.  
 If you have some issues **don't hesitate**, head over to the <a href="https://wordpress.org/support/plugin/full-screen-morphing-search" title="Support">Support</a> Section !  
@@ -64,10 +65,24 @@ You will have to use a thumbnail regenerator.
 I recommend <a href="https://wordpress.org/plugins/regenerate-thumbnails/" title="Regenerate Thumbnails" target="_blank">Regenerate Thumbnails</a>.
 
 = The overlay is not covering the whole page ! =
+
 If your theme has some boxed style(s), like Twenty Sixteen or Twenty Twelve,  
 the overlay will only cover the inside box (the site content) !
 
+= How to change the search input text color ? =
+
+First, you'll have to type something in the input,  
+then choose the desired color.  
+Take a look at the <a href="https://wordpress.org/plugins/full-screen-morphing-search/#screenshots" title="Screenshots">Screenshots</a>.
+
+= How to change the shape of **New Icon/Image** ? =
+
+First make sure that you have used a thumbnail regenerator, see first FAQ.  
+Then, click on the checkbox option **Icon/Image Round or Not ?!**  
+If the new Icon/Image is already round (like the default one of category anf tag), this option will have no effect !
+
 = Autocomplete predicts only posts and pages ! =
+
 Yes, just for now !  
 I'll be adding some more cool functions with time.
 
@@ -78,7 +93,23 @@ The first column shows the most 5 recent posts.
 The second column shows the top 5 used categories and how many posts each category has.  
 The third column shows the top 5 used tags and how many posts each tag has.
 
+2. FSMS Plugin in the Customizer.
+
+3. Posts with no Featured Image defined.
+
+4. Change the default icons and choose to make the new Icon/Image Round or Not !
+
+5. First type something in the input text field, then change the input text color.
+
+6. Old screenshot.
+
 == Changelog ==
+
+= 2.1 =
+* Added ability to change icons from Customizer.
+* Added ability to change input text color.
+* Added italic font-style to input. 
+* Changed placehoder's text behaviour on total remove.
 
 = 2.0 =
 * Plugin rewritten from ground up.
