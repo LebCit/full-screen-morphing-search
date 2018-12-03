@@ -44,8 +44,7 @@ jQuery(document).ready(function ($) {
 	function callbackCategory(mutationList) {
 		mutationList.forEach(function (mutation) {
 			if (mutation.type == 'childList') {
-				var $length = targetNodeCat.children().length;
-				if ($length == 5) {
+				if (mutation.target.childNodes.length == 1) {
 					targetNodeCat.append(fsmsp_cp.fsmsp_category_icon);
 				}
 			}
@@ -61,8 +60,7 @@ jQuery(document).ready(function ($) {
 	function callbackTag(mutationList) {
 		mutationList.forEach(function (mutation) {
 			if (mutation.type == 'childList') {
-				var $length = targetNodeTag.children().length;
-				if ($length == 5) {
+				if (mutation.target.childNodes.length == 1) {
 					targetNodeTag.append(fsmsp_cp.fsmsp_tag_icon);
 				}
 			}
