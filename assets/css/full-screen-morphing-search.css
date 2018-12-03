@@ -10,7 +10,7 @@
 	height: 100%;
 	background: #f1f1f1;
 	position: absolute;
-	z-index: 9;
+	z-index: 99997;
 	top: 0;
 	right: 0;
 	-webkit-transform-origin: 100% 0;
@@ -63,10 +63,11 @@
 	height: 100%;
 	padding: 0 10% 0 10px !important;
 	font-weight: 700;
+	font-style: italic;
 	border: none !important;
 	background: transparent !important;
 	font-size: 0.8em;
-	color: #ec5a62 !important;
+	color: #ec5a62; /* added ' !important' with Kirki */
 	-webkit-transition: font-size 0.5s cubic-bezier(0.7, 0, 0.3, 1);
 	transition: font-size 0.5s cubic-bezier(0.7, 0, 0.3, 1);
 }
@@ -220,6 +221,7 @@ input[type="search"] {
 	position: absolute;
 	pointer-events: none;
 	opacity: 0;
+	z-index: auto;
 }
 
 /* Morphing Search Page Content */
@@ -372,7 +374,7 @@ input[type="search"] {
 	overflow-wrap: break-word;
 	box-shadow: 2px 2px 3px #888888;
 	background: #FFF;
-	z-index: 10;
+	z-index: 99998;
 }
 
 .ui-menu-item {
