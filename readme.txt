@@ -4,7 +4,7 @@ Tags: search, full screen search, morphing search, search overlay,  jQuery UI au
 Requires at least: 4.6
 Tested up to: 5.0
 Requires PHP: 5.6
-Stable tag: 2.2
+Stable tag: 2.3
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -61,13 +61,6 @@ The tag icon is made by <a href="https://www.flaticon.com/authors/freepik" title
 
 == Frequently Asked Questions ==
 
-= Getting an Error After Updating to Version 2.1 and Above ! =
-1- Open the Customizer (click on Customize in wp admin bar).  
-2- Open 'FSMS Plugin' panel then open 'FSMS Icons' section.  
-3- Replace the 3 default icons, uncheck the 3 checkboxes.  
-4- Publish.  
-5- Now you can change this options as you like with no errors.
-
 = Recent posts thumbnails are not round ! =
 
 You will have to use a thumbnail regenerator.  
@@ -114,9 +107,13 @@ The third column shows the top 5 used tags and how many posts each tag has.
 
 == Changelog ==
 
+= 2.3 =
+* Corrected Undefined Index Error.
+* Removed Undefined Index Error from FAQ Section.
+
 = 2.2 =
 * Corrected MutationObserver for categories and tags icons.
-* Updated readme FAQ section for Undefined index Error.
+* Updated readme FAQ section for Undefined Index Error.
 
 = 2.1 =
 * Added ability to change icons from Customizer.
