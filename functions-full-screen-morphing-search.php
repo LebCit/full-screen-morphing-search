@@ -331,7 +331,7 @@ if ( class_exists( 'Kirki' ) ) {
 		$attachment_id     = attachment_url_to_postid( $image_url ); // Tries to convert an attachment URL into a post ID.
 		$article_i_classes = get_option( 'fsmsp_options' )['fsmsp_article_i_classes'];
 		$classes;
-		if ( true === $article_i_classes ) {
+		if ( ! empty( $article_i_classes ) ) {
 			$classes = 'round fsmsp-article-icon';
 		} else {
 			$classes = 'fsmsp-article-icon';
@@ -382,7 +382,7 @@ if ( class_exists( 'Kirki' ) ) {
 		$attachmentcat_id   = attachment_url_to_postid( $imagecat_url );
 		$category_i_classes = get_option( 'fsmsp_options' )['fsmsp_category_i_classes'];
 		$classes;
-		if ( true === $category_i_classes ) {
+		if ( ! empty( $category_i_classes ) ) {
 			$classes = 'round fsmsp-category-icon';
 		} else {
 			$classes = 'fsmsp-category-icon';
@@ -433,7 +433,7 @@ if ( class_exists( 'Kirki' ) ) {
 		$attachmenttag_id = attachment_url_to_postid( $imagetag_url );
 		$tag_i_classes    = get_option( 'fsmsp_options' )['fsmsp_tag_i_classes'];
 		$classes;
-		if ( true === $tag_i_classes ) {
+		if ( ! empty( $tag_i_classes ) ) {
 			$classes = 'round fsmsp-tag-icon';
 		} else {
 			$classes = 'fsmsp-tag-icon';

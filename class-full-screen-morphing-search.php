@@ -81,11 +81,12 @@ class Full_Screen_Morphing_Search {
 	 * @since 1.1
 	 */
 	public function full_screen_morphing_search_output_morphing_search() {
+
+		$fsmsp_options = get_option( 'fsmsp_options' ); // Associative Array 'fsmsp_options'.
+
 		// Setting the placeholder as a variable to output the option depending on the case.
-		$fsmsp_options     = get_option( 'fsmsp_options' ); // Associative Array 'fsmsp_options'.
 		$fsmsp_placeholder = $fsmsp_options['fsmsp_search_form_text']; // Selecting the key to get the value.
-		// phpcs:ignore WordPress.PHP.StrictComparisons.LooseComparison -- strict comparison not working !
-		if ( '' != $fsmsp_placeholder ) {
+		if ( ! empty( $fsmsp_placeholder ) ) {
 			$fsmsp_placeholder = esc_attr( $fsmsp_placeholder );
 		} else {
 			$fsmsp_placeholder = esc_attr_x( 'Search &hellip;', 'placeholder', 'full-screen-morphing-search' );
@@ -127,8 +128,7 @@ class Full_Screen_Morphing_Search {
 						if ( has_post_thumbnail() ) {
 							echo the_post_thumbnail( 'full-screen-morphing-search-plugin-thumb', array( 'class' => 'round' ) );
 						} else {
-							// phpcs:ignore WordPress.PHP.StrictComparisons.LooseComparison -- strict comparison not working !
-							if ( '' == $fsmsp_options['fsmsp_article_icon'] ) {
+							if ( empty( $fsmsp_options['fsmsp_article_icon'] ) ) {
 								echo '<img src="' . esc_url( plugins_url( 'assets/img/article.png', __FILE__ ) ) . '" >';
 							} else {
 								full_screen_morphing_search_article_icon();
@@ -168,8 +168,7 @@ class Full_Screen_Morphing_Search {
 							<div class="dummy-media-object fsmsp-tc-child">
 								<span class="fsmsp-category-image">
 									<?php
-									// phpcs:ignore WordPress.PHP.StrictComparisons.LooseComparison -- strict comparison not working !
-									if ( '' == $fsmsp_options['fsmsp_category_icon'] ) {
+									if ( empty( $fsmsp_options['fsmsp_category_icon'] ) ) {
 										echo '<img src="' . esc_url( plugins_url( 'assets/img/category.png', __FILE__ ) ) . '" >';
 									} else {
 										full_screen_morphing_search_category_icon();
