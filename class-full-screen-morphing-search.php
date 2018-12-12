@@ -98,7 +98,14 @@ class Full_Screen_Morphing_Search {
 				<input required type="search" class="morphsearch-input" name="s"
 				placeholder="<?php echo esc_attr( $fsmsp_placeholder ); ?>"
 				value="" />
-				<button class="morphsearch-submit" type="submit"><?php echo file_get_contents( dirname( __FILE__ ) . '/assets/img/magnifier.svg' ); ?></button> <!-- Using "inline" SVG - https://css-tricks.com/using-svg/#article-header-id-7 -->
+				<button class="morphsearch-submit" type="submit">
+					<?php
+					$response = wp_remote_get( 'https://plugins.svn.wordpress.org/full-screen-morphing-search/trunk/assets/img/magnifier.svg' );
+					if ( is_array( $response ) ) {
+						echo wp_kses( $response['body'], 'full_screen_morphing_search_add_svg_tags' ); // use the content.
+					}
+					?>
+				</button>
 			</form>
 
 			<div class="morphsearch-content">
