@@ -4,7 +4,7 @@ Tags: search, full screen search, morphing  search, search overlay,  jQuery UI a
 Requires at least: 4.6  
 Tested up to: 5.0  
 Requires PHP: 5.6  
-Stable tag: 2.3  
+Stable tag: 2.4  
 License: GPLv2 or later  
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -118,6 +118,11 @@ First type something in the input text field, then change the input text color.
 Old screenshot.
 
 ## Changelog
+
+### 2.4 =
+* Added full_screen_morphing_search_add_svg_tags( $svg_tags )
+* Changed magnifier.svg
+* Removed file_get_contents()
 
 ### 2.3 =
 * Corrected Undefined Index Error.
