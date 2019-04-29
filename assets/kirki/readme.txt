@@ -1,10 +1,10 @@
 === Kirki ===
 Contributors: aristath, fovoc, igmoweb
-Tags: customizer,options framework, theme, mods, toolkit
+Tags: customizer,options framework, theme, mods, toolkit, gutenberg
 Donate link: https://aristath.github.io/donate
 Requires at least: 4.9
-Tested up to: 4.9
-Stable tag: 3.0.34.1
+Tested up to: 5.0
+Stable tag: 3.0.35.3
 License: MIT
 License URI: https://opensource.org/licenses/MIT
 
@@ -33,11 +33,42 @@ If you want to integrate Kirki in your theme or plugin, please read the instruct
 
 == Changelog ==
 
-= 3.0.34.1 =
+= 3.0.35.3 =
 
-Sept.16 2018
+Dec. 26, 2018, dev time: 1h
 
-* Fix: File was not properly uploaded in the WordPress repository in v3.0.34.
+* Fix: Update CSS-Vars when the preview pane refreshes.
+* Fix: Tweaked the CSS Values JS-validation function.
+* Fix: Update Google Fonts.
+
+= 3.0.35.2 =
+
+Dec. 8, 2018, dev time: 20m
+
+* Fix: Correctly output css-vars on the top pf admin pages for use in Gutenberg styles.
+* Fix: Update Google Fonts.
+
+= 3.0.35.1 =
+
+Dec. 6, 2018, dev time: 5m
+
+* Fix: PHP 5.2 conflict.
+
+= 3.0.35 =
+
+Dec. 6, 2018, dev time: 15h
+
+* New: Add Gutenberg support [#2009](https://github.com/aristath/kirki/issues/2009) props @timelsass
+* Fix: Add additional check for variants in the typography control - fixes JS issue if no variants were found.
+* Fix: Reviews all sanitization, validation & escaping calls and adjusted them where necessary. This is one step closer to full WPTRT compliance. Props @poena for bringing this to my attention.
+* Fix: Improved implementation for the `sortable` control.
+* Fix: `kirki_modules` filter was not working. [#2023](https://github.com/aristath/kirki/issues/2023)
+* Fix: Issue with google-fonts loading when in the customizer and the typography field uses `postMessage`. [#1988](https://github.com/aristath/kirki/issues/1988)
+* Fix: Changed the priority for css-vars.
+* Fix: Dependencies for the code control. [#2020](https://github.com/aristath/kirki/issues/2020)
+* Fix: PHP 5.2 error `T_PAAMAYIM_NEKUDOTAYIM` [#2032](https://github.com/aristath/kirki/issues/2032)
+* Fix: Code cleanup in the repeater control, props @joyously [ticket](https://wordpress.org/support/topic/repeater-setting-value-function/)
+* Tweak: Removed deprecated code & code cleanups.
 
 = 3.0.34 =
 
