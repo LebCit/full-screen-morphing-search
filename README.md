@@ -2,9 +2,9 @@
 Contributors: lebcit  
 Tags: search, full screen search, morphing  search, search overlay,  jQuery UI autocomplete  
 Requires at least: 4.6  
-Tested up to: 5.0  
+Tested up to: 5.2  
 Requires PHP: 5.6  
-Stable tag: 2.4  
+Stable tag: 2.5  
 License: GPLv2 or later  
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -118,6 +118,10 @@ First type something in the input text field, then change the input text color.
 Old screenshot.
 
 ## Changelog
+
+### 2.5 =
+* Tested up to version 5.2 of WordPress.
+* Updated Kirki from 3.0.34.1 to 3.0.35.3
 
 ### 2.4 =
 * Added full_screen_morphing_search_add_svg_tags( $svg_tags )
