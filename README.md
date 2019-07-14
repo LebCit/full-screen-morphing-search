@@ -2,9 +2,9 @@
 Contributors: lebcit  
 Tags: search, full screen search, morphing  search, search overlay,  jQuery UI autocomplete  
 Requires at least: 4.6  
-Tested up to: 5.2  
+Tested up to: 5.2.2  
 Requires PHP: 5.6  
-Stable tag: 2.5  
+Stable tag: 2.6  
 License: GPLv2 or later  
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -118,6 +118,11 @@ First type something in the input text field, then change the input text color.
 Old screenshot.
 
 ## Changelog
+
+### 2.6 =
+* Corrected Undefined Index Error.
+* Force Search Input height.
+* Tested up to version 5.2.2 of WordPress.
 
 ### 2.5 =
 * Tested up to version 5.2 of WordPress.
