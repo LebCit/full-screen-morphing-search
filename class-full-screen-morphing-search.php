@@ -217,7 +217,7 @@ class Full_Screen_Morphing_Search {
 								<span class="fsmsp-tag-image">
 									<?php
 									// phpcs:ignore WordPress.PHP.StrictComparisons.LooseComparison -- strict comparison not working !
-									if ( '' == $fsmsp_options['fsmsp_tag_icon'] ) {
+									if ( empty( $fsmsp_options['fsmsp_tag_icon'] ) ) {
 										echo '<img src="' . esc_url( plugins_url( 'assets/img/tag.png', __FILE__ ) ) . '" >';
 									} else {
 										full_screen_morphing_search_tag_icon();
