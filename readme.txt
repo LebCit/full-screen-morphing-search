@@ -4,7 +4,7 @@ Tags: search, full screen search, morphing search, search overlay,  jQuery UI au
 Requires at least: 4.6
 Tested up to: 5.2.2
 Requires PHP: 5.6
-Stable tag: 2.6
+Stable tag: 2.7
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -106,6 +106,9 @@ The third column shows the top 5 used tags and how many posts each tag has.
 6. Old screenshot.
 
 == Changelog ==
+
+= 2.7 =
+* Corrected Undefined Index 'fsmsp_search_form_text'.
 
 = 2.6 =
 * Corrected Undefined Index Error.
