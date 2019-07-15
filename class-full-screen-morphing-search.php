@@ -84,8 +84,12 @@ class Full_Screen_Morphing_Search {
 
 		$fsmsp_options = get_option( 'fsmsp_options' ); // Associative Array 'fsmsp_options'.
 
-		// Setting the placeholder as a variable to output the option depending on the case.
-		$fsmsp_placeholder = $fsmsp_options['fsmsp_search_form_text']; // Selecting the key to get the value.
+		/**
+		 * Setting the placeholder as a variable to output the option depending on the case.
+		 *
+		 * For "Notice: Undefined index" : @see https://stackoverflow.com/a/4261200
+		 */
+		$fsmsp_placeholder = isset( $fsmsp_options['fsmsp_search_form_text'] ) ? $fsmsp_options['fsmsp_search_form_text'] : ''; // Selecting the key to get the value.
 		if ( ! empty( $fsmsp_placeholder ) ) {
 			$fsmsp_placeholder = esc_attr( $fsmsp_placeholder );
 		} else {
