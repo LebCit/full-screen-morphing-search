@@ -24,7 +24,7 @@ add_action( 'init', 'full_screen_morphing_search_thumb' );
 function fsmsp_customize_preview_js() {
 	$handle    = 'fsmsp-customize-preview';
 	$src       = plugins_url( 'assets/js/customize-preview.js', __FILE__ );
-	$deps      = array( 'customize-preview' );
+	$deps      = array( 'jquery', 'customize-preview' );
 	$ver       = '0.1';
 	$in_footer = true;
 	wp_enqueue_script( $handle, $src, $deps, $ver, $in_footer );
@@ -76,34 +76,23 @@ if ( ! function_exists( 'full_screen_morphing_search_add_svg_tags' ) ) {
 }
 
 /**
- * Require Kirki.
+ * Add our Customizer content.
+ *
+ * @param WP_Customize_Manager $wp_customize Manager instance.
  */
-require_once dirname( __FILE__ ) . '/assets/kirki/kirki.php';
+function full_screen_morphing_search_customize_register( $wp_customize ) {
 
-/**
- * Setup Kirki Config.
- * Add Panel, Sections and Controls.
- */
-if ( class_exists( 'Kirki' ) ) {
-	// Setup Kirki Config.
-	Kirki::add_config(
-		'fsmsp_kirki',
-		array(
-			'capability'  => 'edit_theme_options',
-			'option_type' => 'option',
-			'option_name' => 'fsmsp_options',
-		)
-	);
 	// Add FSMS Plugin Panel.
-	Kirki::add_panel(
+	$wp_customize->add_panel(
 		'fsmsp_panel',
 		array(
 			'title'    => __( 'FSMS Plugin', 'full-screen-morphing-search' ),
 			'priority' => 160,
 		)
 	);
+
 	// Add Color Section.
-	Kirki::add_section(
+	$wp_customize->add_section(
 		'fsmsp_color',
 		array(
 			'title'    => __( 'FSMS Colors', 'full-screen-morphing-search' ),
@@ -111,400 +100,429 @@ if ( class_exists( 'Kirki' ) ) {
 			'panel'    => 'fsmsp_panel',
 		)
 	);
-	// FSMS Main Backgroung Color.
-	Kirki::add_field(
-		'fsmsp_kirki',
+
+	// =====================================
+	// = FSMS Main Backgroung Color Picker =
+	// =====================================
+	$wp_customize->add_setting(
+		'fsmsp_options[fsmsp_main_backgroung_color]',
 		array(
-			'type'        => 'color-alpha',
-			'settings'    => 'fsmsp_main_backgroung_color',
-			'label'       => __( 'FSMS Main Backgroung Color', 'full-screen-morphing-search' ),
-			'description' => esc_attr__( 'Change the main background color', 'full-screen-morphing-search' ),
-			'section'     => 'fsmsp_color',
-			'default'     => '#f1f1f1',
-			'transport'   => 'auto',
-			'output'      => array(
-				array(
-					'element'  => array(
-						'#morphsearch',
-						'div.morphsearch-content',
-					),
-					'property' => 'background-color',
-				),
-			),
-		)
-	);
-	// FSMS Close Color.
-	Kirki::add_field(
-		'fsmsp_kirki',
-		array(
-			'type'        => 'color-alpha',
-			'settings'    => 'fsmsp_close_icon_color',
-			'label'       => __( 'FSMS Close Icon Color', 'full-screen-morphing-search' ),
-			'description' => esc_attr__( 'Change the close icon color', 'full-screen-morphing-search' ),
-			'section'     => 'fsmsp_color',
-			'default'     => '#000',
-			'transport'   => 'auto',
-			'output'      => array(
-				array(
-					'element'  => array(
-						'span.morphsearch-close::before',
-						'span.morphsearch-close::after',
-					),
-					'property' => 'background',
-				),
-			),
-		)
-	);
-	// FSMS Search ... Color.
-	Kirki::add_field(
-		'fsmsp_kirki',
-		array(
-			'type'        => 'color-alpha',
-			'settings'    => 'fsmsp_search_text_color',
-			'label'       => __( 'FSMS Search &hellip; text Color', 'full-screen-morphing-search' ),
-			'description' => esc_attr__( 'Change the search &hellip; text color', 'full-screen-morphing-search' ),
-			'section'     => 'fsmsp_color',
-			'default'     => '#c2c2c2',
-			'transport'   => 'auto',
-			'output'      => array(
-				array(
-					'element'  => 'input.morphsearch-input::placeholder',
-					'property' => 'color',
-				),
-			),
-		)
-	);
-	// FSMS Input Text Color.
-	Kirki::add_field(
-		'fsmsp_kirki',
-		array(
-			'type'        => 'color-alpha',
-			'settings'    => 'fsmsp_input_text_color',
-			'label'       => __( 'FSMS Input Text Color', 'full-screen-morphing-search' ),
-			'description' => esc_attr__( 'Change the input text color', 'full-screen-morphing-search' ),
-			'section'     => 'fsmsp_color',
-			'default'     => '#ec5a62',
-			'transport'   => 'auto',
-			'output'      => array(
-				array(
-					'element'  => '.morphsearch-input',
-					'property' => 'color',
-					'suffix'   => ' !important',
-				),
-			),
-		)
-	);
-	// FSMS Magnifier Submit Color.
-	Kirki::add_field(
-		'fsmsp_kirki',
-		array(
-			'type'        => 'color-alpha',
-			'settings'    => 'fsmsp_magnifier_submit_color',
-			'label'       => __( 'FSMS Magnifier Submit Color', 'full-screen-morphing-search' ),
-			'description' => esc_attr__( 'Change the magnifier submit  color', 'full-screen-morphing-search' ),
-			'section'     => 'fsmsp_color',
-			'default'     => '#ddd',
-			'transport'   => 'auto',
-			'output'      => array(
-				array(
-					'element'  => '#Capa_1 path',
-					'property' => 'fill',
-				),
-			),
-		)
-	);
-	// FSMS Headings Color.
-	Kirki::add_field(
-		'fsmsp_kirki',
-		array(
-			'type'        => 'color-alpha',
-			'settings'    => 'fsmsp_headings_color',
-			'label'       => __( 'FSMS Headings Color', 'full-screen-morphing-search' ),
-			'description' => esc_attr__( 'Change the headings color', 'full-screen-morphing-search' ),
-			'section'     => 'fsmsp_color',
-			'default'     => '#c2c2c2',
-			'transport'   => 'auto',
-			'output'      => array(
-				array(
-					'element'  => 'div.dummy-column h2',
-					'property' => 'color',
-				),
-			),
-		)
-	);
-	// FSMS Columns Background Color.
-	Kirki::add_field(
-		'fsmsp_kirki',
-		array(
-			'type'        => 'color-alpha',
-			'settings'    => 'fsmsp_columns_background_color',
-			'label'       => __( 'FSMS Columns Background Color', 'full-screen-morphing-search' ),
-			'description' => esc_attr__( 'Change the columns background color', 'full-screen-morphing-search' ),
-			'section'     => 'fsmsp_color',
-			'default'     => 'rgba(118, 117, 128, 0.05)',
-			'transport'   => 'auto',
-			'output'      => array(
-				array(
-					'element'  => 'div.dummy-media-object',
-					'property' => 'background',
-				),
-			),
-		)
-	);
-	// FSMS Columns Hover Background Color.
-	Kirki::add_field(
-		'fsmsp_kirki',
-		array(
-			'type'        => 'color-alpha',
-			'settings'    => 'fsmsp_columns_hover_background_color',
-			'label'       => __( 'FSMS Columns Hover Background Color', 'full-screen-morphing-search' ),
-			'description' => esc_attr__( 'Change the columns hover background color', 'full-screen-morphing-search' ),
-			'section'     => 'fsmsp_color',
-			'default'     => 'rgba(118, 117, 128, 0.1)',
-			'transport'   => 'auto',
-			'output'      => array(
-				array(
-					'element'  => array(
-						'div.dummy-media-object:hover',
-						'div.dummy-media-object:focus',
-					),
-					'property' => 'background',
-				),
-			),
-		)
-	);
-	// FSMS Links Color.
-	Kirki::add_field(
-		'fsmsp_kirki',
-		array(
-			'type'        => 'color-alpha',
-			'settings'    => 'fsmsp_links_color',
-			'label'       => __( 'FSMS Links Color', 'full-screen-morphing-search' ),
-			'description' => esc_attr__( 'Change the links color', 'full-screen-morphing-search' ),
-			'section'     => 'fsmsp_color',
-			'default'     => 'rgba(145, 145, 145, 0.7)',
-			'transport'   => 'auto',
-			'output'      => array(
-				array(
-					'element'  => 'div.dummy-column h3 a',
-					'property' => 'color',
-				),
-			),
-		)
-	);
-	// FSMS Links Hover Color.
-	Kirki::add_field(
-		'fsmsp_kirki',
-		array(
-			'type'        => 'color-alpha',
-			'settings'    => 'fsmsp_links_hover_color',
-			'label'       => __( 'FSMS Links Hover Color', 'full-screen-morphing-search' ),
-			'description' => esc_attr__( 'Change the links hover color', 'full-screen-morphing-search' ),
-			'section'     => 'fsmsp_color',
-			'default'     => 'rgba(236, 90, 98, 1)',
-			'transport'   => 'auto',
-			'output'      => array(
-				array(
-					'element'  => 'div.dummy-media-object:hover h3 a',
-					'property' => 'color',
-				),
-			),
-		)
-	);
-	// Add Search Form Section.
-	Kirki::add_section(
-		'fsmsp_search_form',
-		array(
-			'title'    => __( 'FSMS Search Form', 'full-screen-morphing-search' ),
-			'priority' => 10,
-			'panel'    => 'fsmsp_panel',
-		)
-	);
-	// FSMS Search Form Text.
-	Kirki::add_field(
-		'fsmsp_kirki',
-		array(
-			'type'        => 'text',
-			'settings'    => 'fsmsp_search_form_text',
-			'label'       => __( 'FSMS Search Form Text', 'full-screen-morphing-search' ),
-			'description' => esc_attr__( 'Change the search form text. If leaved blank, it will return to original value !', 'full-screen-morphing-search' ),
-			'section'     => 'fsmsp_search_form',
-			'default'     => '',
-			'transport'   => 'postMessage',
-			'js_vars'     => array(
-				array(
-					'element'  => 'input.morphsearch-input.ui-autocomplete-input',
-					'function' => 'html',
-					'attr'     => 'placeholder',
-				),
-			),
-		)
-	);
-	// Add Icons Section.
-	Kirki::add_section(
-		'fsmsp_icons',
-		array(
-			'title'    => __( 'FSMS Icons', 'full-screen-morphing-search' ),
-			'priority' => 15,
-			'panel'    => 'fsmsp_panel',
-		)
-	);
-	/**
-	 * Function to display an uploaded image to the media library.
-	 * 1- Retrive the images' URL, here by the option.
-	 * 2- Convert the attachment URL into a post ID. @see https://developer.wordpress.org/reference/functions/attachment_url_to_postid/
-	 * 3- Choose applied classes depending on the classes option.
-	 * 4- Display the image with some parameters. @see https://developer.wordpress.org/reference/functions/wp_get_attachment_image/
-	 * 5- Set this function as a render_callback in the partial_refersh module of the option.
-	 */
-	function full_screen_morphing_search_article_icon() {
-		$image_url         = get_option( 'fsmsp_options' )['fsmsp_article_icon'];
-		$attachment_id     = attachment_url_to_postid( $image_url ); // Tries to convert an attachment URL into a post ID.
-		$article_i_classes = get_option( 'fsmsp_options' )['fsmsp_article_i_classes'];
-		$classes;
-		if ( ! empty( $article_i_classes ) ) {
-			$classes = 'round fsmsp-article-icon';
-		} else {
-			$classes = 'fsmsp-article-icon';
-		}
-		echo wp_get_attachment_image( $attachment_id, 'thumbnail', '', array( 'class' => $classes ) ); // Get an HTML img element representing an image attachment.
-	}
-	// FSMS Article Icon.
-	Kirki::add_field(
-		'fsmsp_kirki',
-		array(
-			'type'            => 'image',
-			'settings'        => 'fsmsp_article_icon',
-			'label'           => __( 'FSMS Article Icon', 'full-screen-morphing-search' ),
-			'description'     => esc_attr__( 'Change the article icon.', 'full-screen-morphing-search' ),
-			'section'         => 'fsmsp_icons',
-			'default'         => '',
-			'partial_refresh' => array(
-				'fsmsp_article_icon' => array(
-					'selector'        => 'div.dummy-media-object a.fsmsp-article-link',
-					'render_callback' => 'full_screen_morphing_search_article_icon',
-				),
-			),
-		)
-	);
-	// FSMS Article Icon/Image Classes.
-	Kirki::add_field(
-		'fsmsp_kirki',
-		array(
-			'type'            => 'checkbox',
-			'settings'        => 'fsmsp_article_i_classes',
-			'label'           => __( 'Article Icon/Image Round or Not ?!', 'full-screen-morphing-search' ),
-			'section'         => 'fsmsp_icons',
-			'default'         => true,
-			'partial_refresh' => array(
-				'fsmsp_article_i_classes' => array(
-					'selector'        => 'div.dummy-media-object a.fsmsp-article-link',
-					'render_callback' => 'full_screen_morphing_search_article_icon',
-				),
-			),
+			'default'           => '#f1f1f1',
+			'sanitize_callback' => 'sanitize_hex_color',
+			'capability'        => 'edit_theme_options',
+			'type'              => 'option',
+			'transport'         => 'postMessage',
+
 		)
 	);
 
-	/**
-	 * Function to display an uploaded image to the media library.
-	 */
-	function full_screen_morphing_search_category_icon() {
-		$imagecat_url       = get_option( 'fsmsp_options' )['fsmsp_category_icon'];
-		$attachmentcat_id   = attachment_url_to_postid( $imagecat_url );
-		$category_i_classes = get_option( 'fsmsp_options' )['fsmsp_category_i_classes'];
-		$classes;
-		if ( ! empty( $category_i_classes ) ) {
-			$classes = 'round fsmsp-category-icon';
-		} else {
-			$classes = 'fsmsp-category-icon';
-		}
-		echo wp_get_attachment_image( $attachmentcat_id, 'thumbnail', '', array( 'class' => $classes ) );
-	}
-	// FSMS Category Icon.
-	Kirki::add_field(
-		'fsmsp_kirki',
-		array(
-			'type'            => 'image',
-			'settings'        => 'fsmsp_category_icon',
-			'label'           => __( 'FSMS Category Icon', 'full-screen-morphing-search' ),
-			'description'     => esc_attr__( 'Change the category icon.', 'full-screen-morphing-search' ),
-			'section'         => 'fsmsp_icons',
-			'default'         => '',
-			'partial_refresh' => array(
-				'fsmsp_category_icon' => array(
-					'selector'        => 'span.fsmsp-category-image',
-					'render_callback' => 'full_screen_morphing_search_category_icon',
-				),
-			),
-		)
-	);
-	// FSMS Category Icon/Image Classes.
-	Kirki::add_field(
-		'fsmsp_kirki',
-		array(
-			'type'            => 'checkbox',
-			'settings'        => 'fsmsp_category_i_classes',
-			'label'           => __( 'Category Icon/Image Round or Not ?!', 'full-screen-morphing-search' ),
-			'section'         => 'fsmsp_icons',
-			'default'         => true,
-			'partial_refresh' => array(
-				'fsmsp_category_i_classes' => array(
-					'selector'        => 'span.fsmsp-category-image',
-					'render_callback' => 'full_screen_morphing_search_category_icon',
-				),
-			),
+	$wp_customize->add_control(
+		new WP_Customize_Color_Control(
+			$wp_customize,
+			'fsmsp_options[fsmsp_main_backgroung_color]',
+			array(
+				'label'       => __( 'FSMS Main Backgroung Color', 'full-screen-morphing-search' ),
+				'description' => esc_attr__( 'Change the main background color', 'full-screen-morphing-search' ),
+				'section'     => 'fsmsp_color',
+				'settings'    => 'fsmsp_options[fsmsp_main_backgroung_color]',
+			)
 		)
 	);
 
-	/**
-	 * Function to display an uploaded image to the media library.
-	 */
-	function full_screen_morphing_search_tag_icon() {
-		$imagetag_url     = get_option( 'fsmsp_options' )['fsmsp_tag_icon'];
-		$attachmenttag_id = attachment_url_to_postid( $imagetag_url );
-		$tag_i_classes    = get_option( 'fsmsp_options' )['fsmsp_tag_i_classes'];
-		$classes;
-		if ( ! empty( $tag_i_classes ) ) {
-			$classes = 'round fsmsp-tag-icon';
-		} else {
-			$classes = 'fsmsp-tag-icon';
-		}
-		echo wp_get_attachment_image( $attachmenttag_id, 'thumbnail', '', array( 'class' => $classes ) );
-	}
-	// FSMS Tag Icon.
-	Kirki::add_field(
-		'fsmsp_kirki',
+	// =====================
+	// = FSMS Close Color. =
+	// =====================
+	$wp_customize->add_setting(
+		'fsmsp_options[fsmsp_close_icon_color]',
 		array(
-			'type'            => 'image',
-			'settings'        => 'fsmsp_tag_icon',
-			'label'           => __( 'FSMS Tag Icon', 'full-screen-morphing-search' ),
-			'description'     => esc_attr__( 'Change the tag icon.', 'full-screen-morphing-search' ),
-			'section'         => 'fsmsp_icons',
-			'default'         => '',
-			'partial_refresh' => array(
-				'fsmsp_tag_icon' => array(
-					'selector'        => 'span.fsmsp-tag-image',
-					'render_callback' => 'full_screen_morphing_search_tag_icon',
-				),
-			),
-		)
-	);
-	// FSMS Tag Icon/Image Classes.
-	Kirki::add_field(
-		'fsmsp_kirki',
-		array(
-			'type'            => 'checkbox',
-			'settings'        => 'fsmsp_tag_i_classes',
-			'label'           => __( 'Tag Icon/Image Round or Not ?!', 'full-screen-morphing-search' ),
-			'section'         => 'fsmsp_icons',
-			'default'         => true,
-			'partial_refresh' => array(
-				'fsmsp_tag_i_classes' => array(
-					'selector'        => 'span.fsmsp-tag-image',
-					'render_callback' => 'full_screen_morphing_search_tag_icon',
-				),
-			),
+			'default'           => '#000',
+			'sanitize_callback' => 'sanitize_hex_color',
+			'capability'        => 'edit_theme_options',
+			'type'              => 'option',
+			'transport'         => 'postMessage',
+
 		)
 	);
 
+	$wp_customize->add_control(
+		new WP_Customize_Color_Control(
+			$wp_customize,
+			'fsmsp_options[fsmsp_close_icon_color]',
+			array(
+				'label'       => __( 'FSMS Close Icon Color', 'full-screen-morphing-search' ),
+				'description' => esc_attr__( 'Change the close icon color', 'full-screen-morphing-search' ),
+				'section'     => 'fsmsp_color',
+				'settings'    => 'fsmsp_options[fsmsp_close_icon_color]',
+			)
+		)
+	);
+
+	// =========================
+	// = FSMS Search... Color. =
+	// =========================
+	$wp_customize->add_setting(
+		'fsmsp_options[fsmsp_search_text_color]',
+		array(
+			'default'           => '#c2c2c2',
+			'sanitize_callback' => 'sanitize_hex_color',
+			'capability'        => 'edit_theme_options',
+			'type'              => 'option',
+			'transport'         => 'postMessage',
+
+		)
+	);
+
+	$wp_customize->add_control(
+		new WP_Customize_Color_Control(
+			$wp_customize,
+			'fsmsp_options[fsmsp_search_text_color]',
+			array(
+				'label'       => __( 'FSMS Search&hellip; text Color', 'full-screen-morphing-search' ),
+				'description' => esc_attr__( 'Change the search&hellip; text color', 'full-screen-morphing-search' ),
+				'section'     => 'fsmsp_color',
+				'settings'    => 'fsmsp_options[fsmsp_search_text_color]',
+			)
+		)
+	);
+
+	// ==========================
+	// = FSMS Input Text Color. =
+	// ==========================
+	$wp_customize->add_setting(
+		'fsmsp_options[fsmsp_input_text_color]',
+		array(
+			'default'           => '#ec5a62',
+			'sanitize_callback' => 'sanitize_hex_color',
+			'capability'        => 'edit_theme_options',
+			'type'              => 'option',
+			'transport'         => 'postMessage',
+
+		)
+	);
+
+	$wp_customize->add_control(
+		new WP_Customize_Color_Control(
+			$wp_customize,
+			'fsmsp_options[fsmsp_input_text_color]',
+			array(
+				'label'       => __( 'FSMS Input Text Color', 'full-screen-morphing-search' ),
+				'description' => esc_attr__( 'Change the input text color', 'full-screen-morphing-search' ),
+				'section'     => 'fsmsp_color',
+				'settings'    => 'fsmsp_options[fsmsp_input_text_color]',
+			)
+		)
+	);
+
+	// ================================
+	// = FSMS Magnifier Submit Color. =
+	// ================================
+	$wp_customize->add_setting(
+		'fsmsp_options[fsmsp_magnifier_submit_color]',
+		array(
+			'default'           => '#ddd',
+			'sanitize_callback' => 'sanitize_hex_color',
+			'capability'        => 'edit_theme_options',
+			'type'              => 'option',
+			'transport'         => 'postMessage',
+
+		)
+	);
+
+	$wp_customize->add_control(
+		new WP_Customize_Color_Control(
+			$wp_customize,
+			'fsmsp_options[fsmsp_magnifier_submit_color]',
+			array(
+				'label'       => __( 'FSMS Magnifier Submit Color', 'full-screen-morphing-search' ),
+				'description' => esc_attr__( 'Change the magnifier submit  color', 'full-screen-morphing-search' ),
+				'section'     => 'fsmsp_color',
+				'settings'    => 'fsmsp_options[fsmsp_magnifier_submit_color]',
+			)
+		)
+	);
+
+	// ========================
+	// = FSMS Headings Color. =
+	// ========================
+	$wp_customize->add_setting(
+		'fsmsp_options[fsmsp_headings_color]',
+		array(
+			'default'           => '#c2c2c2',
+			'sanitize_callback' => 'sanitize_hex_color',
+			'capability'        => 'edit_theme_options',
+			'type'              => 'option',
+			'transport'         => 'postMessage',
+
+		)
+	);
+
+	$wp_customize->add_control(
+		new WP_Customize_Color_Control(
+			$wp_customize,
+			'fsmsp_options[fsmsp_headings_color]',
+			array(
+				'label'       => __( 'FSMS Headings Color', 'full-screen-morphing-search' ),
+				'description' => esc_attr__( 'Change the headings color', 'full-screen-morphing-search' ),
+				'section'     => 'fsmsp_color',
+				'settings'    => 'fsmsp_options[fsmsp_headings_color]',
+			)
+		)
+	);
+
+	// ==================================
+	// = FSMS Columns Background Color. =
+	// ==================================
+	$wp_customize->add_setting(
+		'fsmsp_options[fsmsp_columns_background_color]',
+		array(
+			'default'           => '#ebebeb',
+			'sanitize_callback' => 'sanitize_hex_color',
+			'capability'        => 'edit_theme_options',
+			'type'              => 'option',
+			'transport'         => 'postMessage',
+
+		)
+	);
+
+	$wp_customize->add_control(
+		new WP_Customize_Color_Control(
+			$wp_customize,
+			'fsmsp_options[fsmsp_columns_background_color]',
+			array(
+				'label'       => __( 'FSMS Columns Background Color', 'full-screen-morphing-search' ),
+				'description' => esc_attr__( 'Change the columns background color', 'full-screen-morphing-search' ),
+				'section'     => 'fsmsp_color',
+				'settings'    => 'fsmsp_options[fsmsp_columns_background_color]',
+				'input_attrs' => array( // Optional.
+					'class'      => 'color-picker',
+					'data-alpha' => true,
+				),
+			)
+		)
+	);
+
+	// ========================================
+	// = FSMS Columns Hover Background Color. =
+	// ========================================
+	$wp_customize->add_setting(
+		'fsmsp_options[fsmsp_columns_hover_background_color]',
+		array(
+			'default'           => '#e4e4e5',
+			'sanitize_callback' => 'sanitize_hex_color',
+			'capability'        => 'edit_theme_options',
+			'type'              => 'option',
+			'transport'         => 'postMessage',
+		)
+	);
+
+	$wp_customize->add_control(
+		new WP_Customize_Color_Control(
+			$wp_customize,
+			'fsmsp_options[fsmsp_columns_hover_background_color]',
+			array(
+				'label'       => __( 'FSMS Columns Hover Background Color', 'full-screen-morphing-search' ),
+				'description' => esc_attr__( 'Change the columns hover background color', 'full-screen-morphing-search' ),
+				'section'     => 'fsmsp_color',
+				'settings'    => 'fsmsp_options[fsmsp_columns_hover_background_color]',
+			)
+		)
+	);
+
+	// =====================
+	// = FSMS Links Color. =
+	// =====================
+	$wp_customize->add_setting(
+		'fsmsp_options[fsmsp_links_color]',
+		array(
+			'default'           => '#b2b2b2',
+			'sanitize_callback' => 'sanitize_hex_color',
+			'capability'        => 'edit_theme_options',
+			'type'              => 'option',
+			'transport'         => 'postMessage',
+		)
+	);
+
+	$wp_customize->add_control(
+		new WP_Customize_Color_Control(
+			$wp_customize,
+			'fsmsp_options[fsmsp_links_color]',
+			array(
+				'label'       => __( 'FSMS Links Color', 'full-screen-morphing-search' ),
+				'description' => esc_attr__( 'Change the links color', 'full-screen-morphing-search' ),
+				'section'     => 'fsmsp_color',
+				'settings'    => 'fsmsp_options[fsmsp_links_color]',
+			)
+		)
+	);
+
+	// ===========================
+	// = FSMS Links Hover Color. =
+	// ===========================
+	$wp_customize->add_setting(
+		'fsmsp_options[fsmsp_links_hover_color]',
+		array(
+			'default'           => '#ec5a62',
+			'sanitize_callback' => 'sanitize_hex_color',
+			'capability'        => 'edit_theme_options',
+			'type'              => 'option',
+			'transport'         => 'postMessage',
+		)
+	);
+
+	$wp_customize->add_control(
+		new WP_Customize_Color_Control(
+			$wp_customize,
+			'fsmsp_options[fsmsp_links_hover_color]',
+			array(
+				'label'       => __( 'FSMS Links Hover Color', 'full-screen-morphing-search' ),
+				'description' => esc_attr__( 'Change the links hover color', 'full-screen-morphing-search' ),
+				'section'     => 'fsmsp_color',
+				'settings'    => 'fsmsp_options[fsmsp_links_hover_color]',
+			)
+		)
+	);
+
+}
+add_action( 'customize_register', 'full_screen_morphing_search_customize_register' );
+
+/**
+ * Output fsmsp_main_backgroung_color.
+ */
+/*function fsmsp_main_backgroung_color() {
+	$fsmsp_options = get_option( 'fsmsp_options' );
+	if ( ! empty( $fsmsp_options['fsmsp_main_backgroung_color'] ) ) {
+		$fsmsp_main_backgroung_color = $fsmsp_options['fsmsp_main_backgroung_color'];
+	} else {
+		$fsmsp_main_backgroung_color = '#f1f1f1';
+	}
+	echo esc_attr( $fsmsp_main_backgroung_color );
+}*/
+
+/**
+ * Output fsmsp_close_icon_color.
+ */
+function fsmsp_close_icon_color() {
+	$fsmsp_options = get_option( 'fsmsp_options' );
+	if ( ! empty( $fsmsp_options['fsmsp_close_icon_color'] ) ) {
+		$fsmsp_close_icon_color = $fsmsp_options['fsmsp_close_icon_color'];
+	} else {
+		$fsmsp_close_icon_color = '#000';
+	}
+	echo esc_attr( $fsmsp_close_icon_color );
+}
+
+/**
+ * Output fsmsp_search_text_color.
+ */
+function fsmsp_search_text_color() {
+	$fsmsp_options = get_option( 'fsmsp_options' );
+	if ( ! empty( $fsmsp_options['fsmsp_search_text_color'] ) ) {
+		$fsmsp_search_text_color = $fsmsp_options['fsmsp_search_text_color'];
+	} else {
+		$fsmsp_search_text_color = '#c2c2c2';
+	}
+	echo esc_attr( $fsmsp_search_text_color );
+}
+
+/**
+ * Output fsmsp_input_text_color.
+ */
+function fsmsp_input_text_color() {
+	$fsmsp_options = get_option( 'fsmsp_options' );
+	if ( ! empty( $fsmsp_options['fsmsp_input_text_color'] ) ) {
+		$fsmsp_input_text_color = $fsmsp_options['fsmsp_input_text_color'];
+	} else {
+		$fsmsp_input_text_color = '#ec5a62';
+	}
+	echo esc_attr( $fsmsp_input_text_color );
+}
+
+/**
+ * Output FSMS Magnifier Submit Color.
+ */
+function fsmsp_svg_color() {
+	// CN: Modify 'fill' attribute of <path> in <svg>.
+	$response = wp_remote_get( 'https://plugins.svn.wordpress.org/full-screen-morphing-search/trunk/assets/img/magnifier.svg' );
+	if ( is_array( $response ) && ! is_wp_error( $response ) ) {
+		$svg = wp_remote_retrieve_body( $response );
+		$dom = new DOMDocument();
+		libxml_use_internal_errors( true );
+		$dom->loadHTML( $svg );
+		libxml_use_internal_errors( false );
+		$nodes = $dom->getElementsByTagName( 'path' );
+		foreach ( $nodes as $node ) {
+			$fsmsp_options = get_option( 'fsmsp_options' );
+			if ( ! empty( $fsmsp_options['fsmsp_magnifier_submit_color'] ) ) {
+				$fill = $node->setAttribute( 'fill', $fsmsp_options['fsmsp_magnifier_submit_color'] );
+			} else {
+				$fill = $node->setAttribute( 'fill', '#ddd' );
+			}
+		}
+		echo wp_kses( $dom->saveHTML(), 'full_screen_morphing_search_add_svg_tags' );
+	}
+}
+
+/**
+ * Output fsmsp_headings_color.
+ */
+function fsmsp_headings_color() {
+	$fsmsp_options = get_option( 'fsmsp_options' );
+	if ( ! empty( $fsmsp_options['fsmsp_headings_color'] ) ) {
+		$fsmsp_headings_color = $fsmsp_options['fsmsp_headings_color'];
+	} else {
+		$fsmsp_headings_color = '#c2c2c2';
+	}
+	echo esc_attr( $fsmsp_headings_color );
+}
+
+/**
+ * Output fsmsp_columns_background_color.
+ */
+function fsmsp_columns_background_color() {
+	$fsmsp_options = get_option( 'fsmsp_options' );
+	if ( ! empty( $fsmsp_options['fsmsp_columns_background_color'] ) ) {
+		$fsmsp_columns_background_color = $fsmsp_options['fsmsp_columns_background_color'];
+	} else {
+		$fsmsp_columns_background_color = '#ebebeb';
+	}
+	echo esc_attr( $fsmsp_columns_background_color );
+}
+
+/**
+ * Output fsmsp_columns_hover_background_color.
+ */
+function fsmsp_columns_hover_background_color() {
+	$fsmsp_options = get_option( 'fsmsp_options' );
+	if ( ! empty( $fsmsp_options['fsmsp_columns_hover_background_color'] ) ) {
+		$fsmsp_columns_hover_background_color = $fsmsp_options['fsmsp_columns_hover_background_color'];
+	} else {
+		$fsmsp_columns_hover_background_color = '#e4e4e5';
+	}
+	echo esc_attr( $fsmsp_columns_hover_background_color );
+}
+
+/**
+ * Output fsmsp_links_color.
+ */
+function fsmsp_links_color() {
+	$fsmsp_options = get_option( 'fsmsp_options' );
+	if ( ! empty( $fsmsp_options['fsmsp_links_color'] ) ) {
+		$fsmsp_links_color = $fsmsp_options['fsmsp_links_color'];
+	} else {
+		$fsmsp_links_color = '#b2b2b2';
+	}
+	echo esc_attr( $fsmsp_links_color );
+}
+
+/**
+ * Output fsmsp_links_hover_color.
+ */
+function fsmsp_links_hover_color() {
+	$fsmsp_options = get_option( 'fsmsp_options' );
+	if ( ! empty( $fsmsp_options['fsmsp_links_hover_color'] ) ) {
+		$fsmsp_links_hover_color = $fsmsp_options['fsmsp_links_hover_color'];
+	} else {
+		$fsmsp_links_hover_color = '#ec5a62';
+	}
+	echo esc_attr( $fsmsp_links_hover_color );
 }
