@@ -70,15 +70,24 @@ class Full_Screen_Morphing_Search {
 
 		// Declare PHP Variables to be passed to JS.
 		$fsmsp_options_does_not_exists = ( null === get_option( 'fsmsp_options', null ) ) ? true : false;
-		$fsmsp_main_backgroung_color   = $fsmsp_options['fsmsp_main_backgroung_color'];
+
 		// Localize full-screen-morphing-search.js !
 		wp_localize_script(
 			$this->plugin->name,
 			'fsmsp_vars',
 			array(
-				'fsmsp_is_customize_preview'    => is_customize_preview(),
-				'fsmsp_options_does_not_exists' => $fsmsp_options_does_not_exists,
-				'fsmsp_main_backgroung_color'   => $fsmsp_main_backgroung_color,
+				'fsmsp_is_customize_preview'           => is_customize_preview(),
+				'fsmsp_options_does_not_exists'        => $fsmsp_options_does_not_exists,
+				'fsmsp_main_backgroung_color'          => esc_attr( ( ! empty( $fsmsp_options['fsmsp_main_backgroung_color'] ) ? $fsmsp_options['fsmsp_main_backgroung_color'] : '#f1f1f1' ) ),
+				'fsmsp_close_icon_color'               => esc_attr( ( ! empty( $fsmsp_options['fsmsp_close_icon_color'] ) ? $fsmsp_options['fsmsp_close_icon_color'] : '#000' ) ),
+				'fsmsp_search_text_color'              => esc_attr( ( ! empty( $fsmsp_options['fsmsp_search_text_color'] ) ? $fsmsp_options['fsmsp_search_text_color'] : '#c2c2c2' ) ),
+				'fsmsp_input_text_color'               => esc_attr( ( ! empty( $fsmsp_options['fsmsp_input_text_color'] ) ? $fsmsp_options['fsmsp_input_text_color'] : '#ec5a62' ) ),
+				'fsmsp_magnifier_submit_color'         => esc_attr( ( ! empty( $fsmsp_options['fsmsp_magnifier_submit_color'] ) ? $fsmsp_options['fsmsp_magnifier_submit_color'] : '#ddd' ) ),
+				'fsmsp_headings_color'                 => esc_attr( ( ! empty( $fsmsp_options['fsmsp_headings_color'] ) ? $fsmsp_options['fsmsp_headings_color'] : '#c2c2c2' ) ),
+				'fsmsp_columns_background_color'       => esc_attr( ( ! empty( $fsmsp_options['fsmsp_columns_background_color'] ) ? $fsmsp_options['fsmsp_columns_background_color'] : '#ebebeb' ) ),
+				'fsmsp_columns_hover_background_color' => esc_attr( ( ! empty( $fsmsp_options['fsmsp_columns_hover_background_color'] ) ? $fsmsp_options['fsmsp_columns_hover_background_color'] : '#e4e4e5' ) ),
+				'fsmsp_links_color'                    => esc_attr( ( ! empty( $fsmsp_options['fsmsp_links_color'] ) ? $fsmsp_options['fsmsp_links_color'] : '#b2b2b2' ) ),
+				'fsmsp_links_hover_color'              => esc_attr( ( ! empty( $fsmsp_options['fsmsp_links_hover_color'] ) ? $fsmsp_options['fsmsp_links_hover_color'] : '#ec5a62' ) ),
 			)
 		);
 
@@ -97,26 +106,24 @@ class Full_Screen_Morphing_Search {
 		?>
 
 			<div id="morphsearch" class="morphsearch">
-				<span class="morphsearch-close" style="--morphsearch-close-background: <?php fsmsp_close_icon_color(); ?>">
-				</span><!-- Modifiying the CSS Variable --morphsearch-close-background on the style attribute -->
+				<span class="morphsearch-close"></span>
 				<form role="search" class="morphsearch-form" method="get" action="<?php echo esc_url( home_url( '/' ) ); ?>">
 					<input required type="search" class="morphsearch-input" name="s" 
 					placeholder="<?php echo esc_attr_x( 'Search...', 'placeholder' ); ?>" 
-					style=
-						"
-						--morphsearch-input-placeholder: <?php fsmsp_search_text_color(); ?>
-						;
-						color: <?php fsmsp_input_text_color(); ?>
-						"
 					value=""/>
 					<button id="morphsearch-submit" class="morphsearch-submit" type="submit">
-						<?php fsmsp_svg_color(); // CN: Using "inline" SVG. ?>
+						<?php
+						$response = wp_remote_get( 'https://plugins.svn.wordpress.org/full-screen-morphing-search/trunk/assets/img/magnifier.svg' );
+						if ( is_array( $response ) && ! is_wp_error( $response ) ) {
+							echo wp_kses( $response['body'], 'full_screen_morphing_search_add_svg_tags' ); // use the content.
+						}
+						?>
 					</button>
 				</form>
 
 				<div class="morphsearch-content">
 					<div class="dummy-column">
-						<h2	style="color: <?php fsmsp_headings_color(); ?>">Recent Posts</h2>
+						<h2>Recent Posts</h2>
 						<?php
 						$args  = array(
 							'post_type'           => 'post',
@@ -127,16 +134,12 @@ class Full_Screen_Morphing_Search {
 						while ( $msprp->have_posts() ) :
 							$msprp->the_post();
 							?>
-						<div class="dummy-media-object" style="background: <?php fsmsp_columns_background_color(); ?>"
-							onmouseover="this.style.background = '<?php fsmsp_columns_hover_background_color(); ?>';"
-							onmouseout="this.style.background = '<?php fsmsp_columns_background_color(); ?>';">
+						<div class="dummy-media-object">
 							<a href="<?php echo the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
 									<?php echo the_post_thumbnail( 'msp-thumb', array( 'class' => 'round' ) ); ?>
 							</a>
 							<h3>
-								<a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>" style="color: <?php fsmsp_links_color(); ?>"
-									onmouseover="this.style.color = '<?php fsmsp_links_hover_color(); ?>';"
-									onmouseout="this.style.color = '<?php fsmsp_links_color(); ?>';">
+								<a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
 									<?php the_title(); ?>
 								</a>
 							</h3>
@@ -147,7 +150,7 @@ class Full_Screen_Morphing_Search {
 						?>
 					</div>
 					<div class="dummy-column">
-						<h2	style="color: <?php fsmsp_headings_color(); ?>">Top Categories</h2>
+						<h2>Top Categories</h2>
 						<?php
 						$cats = get_categories();
 						if ( empty( $cats ) ) {
@@ -168,14 +171,10 @@ class Full_Screen_Morphing_Search {
 								$cat      = str_replace( ' ', '&nbsp;', esc_html( $cat ) );
 							if ( $i < 6 ) {
 								?>
-									<div class="dummy-media-object" style="background: <?php fsmsp_columns_background_color(); ?>"
-										onmouseover="this.style.background = '<?php fsmsp_columns_hover_background_color(); ?>';"
-										onmouseout="this.style.background = '<?php fsmsp_columns_background_color(); ?>';">
+									<div class="dummy-media-object">
 										<?php
 										echo '<img src="' . esc_url( plugins_url( 'assets/img/category.png', __FILE__ ) ) . '" > ';
-										print '<h3><a href=' . esc_url( $cat_link ) . ' style="color:';
-										echo esc_attr( fsmsp_links_color() ) . '"
-										>' . esc_html( $cat . ' (' . $tc_count . ')' ) . '</a></h3>';
+										print "<h3><a href='" . esc_url( $cat_link ) . "'>" . esc_html( $cat . ' (' . $tc_count . ')' ) . '</a></h3>';
 										?>
 									</div>
 								<?php
@@ -184,7 +183,7 @@ class Full_Screen_Morphing_Search {
 						?>
 					</div>
 					<div class="dummy-column">
-						<h2	style="color: <?php fsmsp_headings_color(); ?>">Top Tags</h2>
+						<h2>Top Tags</h2>
 						<?php
 						$tags = get_tags();
 						if ( empty( $tags ) ) {
@@ -205,9 +204,7 @@ class Full_Screen_Morphing_Search {
 								$tag      = str_replace( ' ', '&nbsp;', esc_html( $tag ) );
 							if ( $i < 6 ) {
 								?>
-									<div class="dummy-media-object" style="background: <?php fsmsp_columns_background_color(); ?>"
-										onmouseover="this.style.background = '<?php fsmsp_columns_hover_background_color(); ?>';"
-										onmouseout="this.style.background = '<?php fsmsp_columns_background_color(); ?>';">
+									<div class="dummy-media-object">
 										<?php
 										echo '<img src="' . esc_url( plugins_url( 'assets/img/tag.png', __FILE__ ) ) . '" >';
 										print "<h3><a href='" . esc_url( $tag_link ) . "'>" . esc_html( $tag . ' (' . $tt_count . ')' ) . '</a></h3>';

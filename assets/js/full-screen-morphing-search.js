@@ -58,14 +58,71 @@
 	// Reset Morphing Search Input Value to Search...
 	$('input.search-field').val('');
 
-	console.info( fsmsp_vars.fsmsp_options_does_not_exists );
 	if ( fsmsp_vars.fsmsp_options_does_not_exists ) {
-		console.log( 'I do not exist' );
+
+		// Output fsmsp_main_backgroung_color.
 		$( '#morphsearch, div.morphsearch-content' ).css( 'background-color', '#f1f1f1' );
 
+		// Output fsmsp_close_icon_color.
+		document.querySelectorAll( 'span.morphsearch-close' )[0].style.setProperty( "--morphsearch-close-background", '#000' );
+
+		// Output fsmsp_search_text_color.
+		document.querySelectorAll( 'input.morphsearch-input' )[0].style.setProperty( "--morphsearch-input-placeholder", '#c2c2c2' );
+
+		// Output fsmsp_input_text_color.
+		$( '#morphsearch .morphsearch-input' ).css( 'color', '#ec5a62' );
+
+		// Output fsmsp_magnifier_submit_color.
+		$( '#Capa_1 path' ).css( 'fill', '#ddd' );
+
+		// Output fsmsp_headings_color.
+		$( 'div.dummy-column h2' ).css( 'color', '#c2c2c2' );
+
+		// Output fsmsp_columns_background_color.
+		$( 'div.dummy-media-object' ).css( 'background', '#ebebeb' );
+		$( 'div.dummy-media-object' ).mouseout( function() {
+			$(this).css( 'background', '#ebebeb' );
+			// Output fsmsp_links_color.
+			$(this).find( 'h3 a' ).css( 'color', '#b2b2b2' );
+		});
+
+		// Output fsmsp_columns_hover_background_color.
+		$( 'div.dummy-media-object' ).mouseover( function() {
+			$(this).css( 'background', '#e4e4e5' );
+			// Output fsmsp_links_hover_color.
+			$(this).find( 'h3 a' ).css( 'color', '#ec5a62' );
+		});
+
+		// Output fsmsp_links_color.
+		$( '.dummy-media-object h3 a' ).css( 'color', '#b2b2b2' );
+
 	} else {
-		console.log( 'Here I am' );
+
 		$( '#morphsearch, div.morphsearch-content' ).css( 'background-color', fsmsp_vars.fsmsp_main_backgroung_color );
+
+		document.querySelectorAll( 'span.morphsearch-close' )[0].style.setProperty( "--morphsearch-close-background", fsmsp_vars.fsmsp_close_icon_color );
+
+		document.querySelectorAll( 'input.morphsearch-input' )[0].style.setProperty( "--morphsearch-input-placeholder", fsmsp_vars.fsmsp_search_text_color );
+
+		$( '#morphsearch .morphsearch-input' ).css( 'color', fsmsp_vars.fsmsp_input_text_color );
+
+		$( '#Capa_1 path' ).css( 'fill', fsmsp_vars.fsmsp_magnifier_submit_color );
+
+		$( 'div.dummy-column h2' ).css( 'color', fsmsp_vars.fsmsp_headings_color );
+
+		$( 'div.dummy-media-object' ).css( 'background', fsmsp_vars.fsmsp_columns_background_color );
+		$( 'div.dummy-media-object' ).mouseout( function() {
+			$(this).css( 'background', fsmsp_vars.fsmsp_columns_background_color );
+			$(this).find( 'h3 a' ).css( 'color', fsmsp_vars.fsmsp_links_color );
+		});
+
+		$( 'div.dummy-media-object' ).mouseover( function() {
+			$(this).css( 'background', fsmsp_vars.fsmsp_columns_hover_background_color );
+			$(this).find( 'h3 a' ).css( 'color', fsmsp_vars.fsmsp_links_hover_color );
+		});
+
+		$( '.dummy-media-object h3 a' ).css( 'color', fsmsp_vars.fsmsp_links_color );
+
 	}
 
 } )( jQuery );

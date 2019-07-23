@@ -56,9 +56,7 @@
 	// FSMS Columns Background Color.
 	wp.customize( 'fsmsp_options[fsmsp_columns_background_color]', function( value ) {
 		value.bind( function( newval ) {
-			// Repeat the CSS logic in PHP : background !
 			$( 'div.dummy-media-object' ).css( 'background', newval );
-			// Repeat the JS logic in PHP : onmouseout !
 			$( 'div.dummy-media-object' ).mouseout( function() {
 				$(this).css( 'background', newval );
 			});
@@ -68,7 +66,6 @@
 	// FSMS Columns Hover Background Color.
 	wp.customize( 'fsmsp_options[fsmsp_columns_hover_background_color]', function( value ) {
 		value.bind( function( newval ) {
-			// Repeat the JS logic in PHP : onmouseover !
 			$( 'div.dummy-media-object' ).mouseover( function() {
 				$(this).css( 'background', newval );
 			});
@@ -78,11 +75,9 @@
 	// FSMS Links Color.
 	wp.customize( 'fsmsp_options[fsmsp_links_color]', function( value ) {
 		value.bind( function( newval ) {
-			// Repeat the CSS logic in PHP : color !
 			$( '.dummy-media-object h3 a' ).css( 'color', newval );
-			// Repeat the JS logic in PHP : onmouseout !
-			$( '.dummy-media-object h3 a' ).mouseout( function() {
-				$(this).css( 'color', newval );
+			$( 'div.dummy-media-object' ).mouseout( function() {
+				$(this).find( 'h3 a' ).css( 'color', newval );
 			});
 		} );
 	} );
@@ -90,9 +85,8 @@
 	// FSMS Links Hover Color.
 	wp.customize( 'fsmsp_options[fsmsp_links_hover_color]', function( value ) {
 		value.bind( function( newval ) {
-			// Repeat the JS logic in PHP : onmouseover !
-			$( '.dummy-media-object h3 a' ).mouseover( function() {
-				$(this).css( 'color', newval );
+			$( 'div.dummy-media-object' ).mouseover( function() {
+				$(this).find( 'h3 a' ).css( 'color', newval );
 			});
 		} );
 	} );
