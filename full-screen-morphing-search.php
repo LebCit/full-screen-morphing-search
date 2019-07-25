@@ -6,7 +6,6 @@
  * Author: LebCit
  * Author URI: https://lebcit.tk/
  * Text Domain: full-screen-morphing-search
- * Domain Path: /languages
  * License:      GPL2
  * License URI:  https://www.gnu.org/licenses/gpl-2.0.html
  * Description: Effect for any WordPress search input that morphs into a fullscreen overlay.

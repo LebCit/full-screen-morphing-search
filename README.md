@@ -31,7 +31,7 @@ If you use this plugin, please consider leaving a <a href="https://wordpress.org
 
 ## Credits
 
-This plugin is created by <a href="http://tympanus.net/codrops/author/crnacura/" rel="author" title="Manoela Ilic" target="_blank">Manoela Ilic</a> and adapted for WordPress by <a href="https://profiles.wordpress.org/lebcit/" rel="author" title="LebCit" target="_blank">LebCit</a>.
+This plugin is created by <a href="http://tympanus.net/codrops/author/crnacura/" rel="author" title="Manoela Ilic" target="_blank">Manoela Ilic</a> and adapted for WordPress by <a href="https://profiles.wordpress.org/lebcit/" rel="author" title="LebCit" target="_blank">LebCit</a>.  
 If you want to learn more about this plugin, visit the <a href="http://tympanus.net/codrops/2014/11/04/simple-morphing-search/" title="Simple Morphing Search" target="_blank">Simple Morphing Search</a> original post.  
 > A <a href="https://wordpress.org/plugins/full-screen-morphing-search/#screenshots" title="Screenshots">Picture</a> is worth a thousand words
 
