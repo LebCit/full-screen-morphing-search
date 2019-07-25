@@ -15,7 +15,7 @@
 		 * 2- Focusing on the input of Full Screen Morphing Search Input Field by a setTimeout() to avoid a recursive function. 
 		 * The main function is called upon 'focus' on any $( 'form[role=search] input, form input[id=s]' ),
 		 * so if we focus directly on the .morphsearch-input it will be a recursive function
-		 * since the two inputs are in a 'form[role=search]' !
+		 * since the two inputs are in a 'form[role=search] and/ or form input[id=s]' !
 		 * Recursive function :@see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors/Too_much_recursion
 		 * 
 		 * The Customizer preview part is handled by a MutationObserver in customize-preview.js !
@@ -34,7 +34,7 @@
 		event.preventDefault();
 
 		// Hide the Morphing Search Page.
-		$( 'form input[id=s]' ).blur();
+		$( 'form[role=search] input, form input[id=s]' ).blur();
 		$( '.morphsearch' ).removeClass( 'open' );
 	} );
 
