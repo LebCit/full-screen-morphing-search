@@ -88,6 +88,7 @@ class Full_Screen_Morphing_Search {
 				'fsmsp_columns_hover_background_color' => esc_attr( ( ! empty( $fsmsp_options['fsmsp_columns_hover_background_color'] ) ? $fsmsp_options['fsmsp_columns_hover_background_color'] : '#e4e4e5' ) ),
 				'fsmsp_links_color'                    => esc_attr( ( ! empty( $fsmsp_options['fsmsp_links_color'] ) ? $fsmsp_options['fsmsp_links_color'] : '#b2b2b2' ) ),
 				'fsmsp_links_hover_color'              => esc_attr( ( ! empty( $fsmsp_options['fsmsp_links_hover_color'] ) ? $fsmsp_options['fsmsp_links_hover_color'] : '#ec5a62' ) ),
+				'fsmsp_search_form_text'               => esc_attr( ( ! empty( $fsmsp_options['fsmsp_search_form_text'] ) ? $fsmsp_options['fsmsp_search_form_text'] : 'Search&hellip;' ) ),
 			)
 		);
 
@@ -108,9 +109,7 @@ class Full_Screen_Morphing_Search {
 			<div id="morphsearch" class="morphsearch">
 				<span class="morphsearch-close"></span>
 				<form role="search" class="morphsearch-form" method="get" action="<?php echo esc_url( home_url( '/' ) ); ?>">
-					<input required type="search" class="morphsearch-input" name="s" 
-					placeholder="<?php echo esc_attr_x( 'Search...', 'placeholder' ); ?>" 
-					value=""/>
+					<input required type="search" class="morphsearch-input" name="s" placeholder="" value=""/>
 					<button id="morphsearch-submit" class="morphsearch-submit" type="submit">
 						<?php
 						$response = wp_remote_get( 'https://plugins.svn.wordpress.org/full-screen-morphing-search/trunk/assets/img/magnifier.svg' );
@@ -123,58 +122,80 @@ class Full_Screen_Morphing_Search {
 
 				<div class="morphsearch-content">
 					<div class="dummy-column">
-						<h2>Recent Posts</h2>
+						<h2 class="fsmsp-rp">Recent Posts</h2>
 						<?php
-						$args  = array(
+						$args    = array(
 							'post_type'           => 'post',
 							'posts_per_page'      => '5',
 							'ignore_sticky_posts' => 1,
 						);
-						$msprp = new WP_Query( $args );
-						while ( $msprp->have_posts() ) :
-							$msprp->the_post();
+						$fsmsprp = new WP_Query( $args );
+						while ( $fsmsprp->have_posts() ) :
+							$fsmsprp->the_post();
 							?>
 						<div class="dummy-media-object">
+							<?php
+							if ( has_post_thumbnail() ) {
+								?>
 							<a href="<?php echo the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
-									<?php echo the_post_thumbnail( 'msp-thumb', array( 'class' => 'round' ) ); ?>
-							</a>
-							<h3>
-								<a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
-									<?php the_title(); ?>
-								</a>
-							</h3>
-						</div>
+								<?php
+							} else {
+								?>
+							<a href="<?php echo the_permalink(); ?>" class="fsmsp-article-link" title="<?php the_title_attribute(); ?>">
+								<?php
+							}
+							if ( has_post_thumbnail() ) {
+								echo the_post_thumbnail( 'full-screen-morphing-search-plugin-thumb', array( 'class' => 'round' ) );
+							} else {
+								if ( empty( $fsmsp_options['fsmsp_article_icon'] ) ) {
+									echo '<img src="' . esc_url( plugins_url( 'assets/img/article.png', __FILE__ ) ) . '" >';
+								} else {
+									full_screen_morphing_search_article_icon();
+								}
+							}
+							?>
+						</a>
+						<h3><a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a></h3>
+					</div>
 							<?php
 						endwhile;
 						wp_reset_postdata();
 						?>
 					</div>
 					<div class="dummy-column">
-						<h2>Top Categories</h2>
+						<h2 class="fsmsp-tc">Top Categories</h2>
 						<?php
-						$cats = get_categories();
-						if ( empty( $cats ) ) {
+						$fsmspcats = get_categories();
+						if ( empty( $fsmspcats ) ) {
 								return;
 						}
-						$tc_counts = array();
-						$cat_links = array();
-						foreach ( (array) $cats as $cat ) {
-								$tc_counts[ $cat->name ] = $cat->count;
-								$cat_links[ $cat->name ] = get_category_link( $cat->term_id );
+						$fsmsptc_counts = array();
+						$fsmspcat_links = array();
+						foreach ( (array) $fsmspcats as $fsmspcat ) {
+								$fsmsptc_counts[ $fsmspcat->name ] = $fsmspcat->count;
+								$fsmspcat_links[ $fsmspcat->name ] = get_category_link( $fsmspcat->term_id );
 						}
-						asort( $tc_counts );
-						$tc_counts = array_reverse( $tc_counts, true );
-						$i         = 0;
-						foreach ( $tc_counts as $cat => $tc_count ) {
+						asort( $fsmsptc_counts );
+						$fsmsptc_counts = array_reverse( $fsmsptc_counts, true );
+						$i              = 0;
+						foreach ( $fsmsptc_counts as $fsmspcat => $fsmsptc_count ) {
 								$i++;
-								$cat_link = esc_url( $cat_links[ $cat ] );
-								$cat      = str_replace( ' ', '&nbsp;', esc_html( $cat ) );
+								$fsmspcat_link = esc_url( $fsmspcat_links[ $fsmspcat ] );
+								$fsmspcat      = str_replace( ' ', '&nbsp;', esc_html( $fsmspcat ) );
 							if ( $i < 6 ) {
 								?>
-									<div class="dummy-media-object">
+									<div class="dummy-media-object fsmsp-tc-child">
+										<span class="fsmsp-category-image">
+											<?php
+											if ( empty( $fsmsp_options['fsmsp_category_icon'] ) ) {
+												echo '<img src="' . esc_url( plugins_url( 'assets/img/category.png', __FILE__ ) ) . '" >';
+											} else {
+												full_screen_morphing_search_category_icon();
+											}
+											?>
+										</span>
 										<?php
-										echo '<img src="' . esc_url( plugins_url( 'assets/img/category.png', __FILE__ ) ) . '" > ';
-										print "<h3><a href='" . esc_url( $cat_link ) . "'>" . esc_html( $cat . ' (' . $tc_count . ')' ) . '</a></h3>';
+											print "<h3><a href='" . esc_url( $fsmspcat_link ) . "'>" . esc_html( $fsmspcat . ' (' . $fsmsptc_count . ')' ) . '</a></h3>';
 										?>
 									</div>
 								<?php
@@ -183,33 +204,41 @@ class Full_Screen_Morphing_Search {
 						?>
 					</div>
 					<div class="dummy-column">
-						<h2>Top Tags</h2>
+						<h2 class="fsmsp-tt">Top Tags</h2>
 						<?php
-						$tags = get_tags();
-						if ( empty( $tags ) ) {
+						$fsmsptags = get_tags();
+						if ( empty( $fsmsptags ) ) {
 								return;
 						}
-						$tt_counts = array();
-						$tag_links = array();
-						foreach ( (array) $tags as $tag ) {
-								$tt_counts[ $tag->name ] = $tag->count;
-								$tag_links[ $tag->name ] = get_tag_link( $tag->term_id );
+						$fsmsptt_counts = array();
+						$fsmsptag_links = array();
+						foreach ( (array) $fsmsptags as $fsmsptag ) {
+								$fsmsptt_counts[ $fsmsptag->name ] = $fsmsptag->count;
+								$fsmsptag_links[ $fsmsptag->name ] = get_tag_link( $fsmsptag->term_id );
 						}
-						asort( $tt_counts );
-						$tt_counts = array_reverse( $tt_counts, true );
-						$i         = 0;
-						foreach ( $tt_counts as $tag => $tt_count ) {
+						asort( $fsmsptt_counts );
+						$fsmsptt_counts = array_reverse( $fsmsptt_counts, true );
+						$i              = 0;
+						foreach ( $fsmsptt_counts as $fsmsptag => $fsmsptt_count ) {
 								$i++;
-								$tag_link = esc_url( $tag_links[ $tag ] );
-								$tag      = str_replace( ' ', '&nbsp;', esc_html( $tag ) );
+								$tag_link = esc_url( $fsmsptag_links[ $fsmsptag ] );
+								$fsmsptag = str_replace( ' ', '&nbsp;', esc_html( $fsmsptag ) );
 							if ( $i < 6 ) {
 								?>
-									<div class="dummy-media-object">
+								<div class="dummy-media-object fsmsp-tt-child">
+									<span class="fsmsp-tag-image">
 										<?php
-										echo '<img src="' . esc_url( plugins_url( 'assets/img/tag.png', __FILE__ ) ) . '" >';
-										print "<h3><a href='" . esc_url( $tag_link ) . "'>" . esc_html( $tag . ' (' . $tt_count . ')' ) . '</a></h3>';
+										if ( empty( $fsmsp_options['fsmsp_tag_icon'] ) ) {
+											echo '<img src="' . esc_url( plugins_url( 'assets/img/tag.png', __FILE__ ) ) . '" >';
+										} else {
+											full_screen_morphing_search_tag_icon();
+										}
 										?>
-									</div>
+									</span>
+									<?php
+									print "<h3><a href='" . esc_url( $tag_link ) . "'>" . esc_html( $fsmsptag . ' (' . $fsmsptt_count . ')' ) . '</a></h3>';
+									?>
+								</div>
 								<?php
 							}
 						}
@@ -220,19 +249,19 @@ class Full_Screen_Morphing_Search {
 			</div><!-- #morphsearch.morphsearch -->
 
 		<?php
-				$fsmsac = array( // Autocomplete.
+				$fsmsp_ac = array( // Autocomplete.
 					'post_type'      => array( 'post', 'page' ),
 					'post_status'    => 'publish',
 					'posts_per_page' => -1, // all posts and pages.
 				);
 
-				$posts = get_posts( $fsmsac );
+				$posts = get_posts( $fsmsp_ac );
 
 		if ( $posts ) :
 			foreach ( $posts as $k => $post ) {
-								$source[ $k ]['ID']        = $post->ID;
-								$source[ $k ]['label']     = $post->post_title; // The name of the post.
-								$source[ $k ]['permalink'] = get_permalink( $post->ID );
+				$source[ $k ]['ID']        = $post->ID;
+				$source[ $k ]['label']     = $post->post_title; // The name of the post.
+				$source[ $k ]['permalink'] = get_permalink( $post->ID );
 			}
 
 			?>
@@ -250,7 +279,7 @@ class Full_Screen_Morphing_Search {
 					});
 				</script>
 				<?php
-				endif;
+		endif;
 
 	}
 

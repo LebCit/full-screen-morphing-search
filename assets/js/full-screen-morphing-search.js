@@ -23,7 +23,7 @@
 		 */
 		if (!fsmsp_vars.fsmsp_is_customize_preview) {
 			setTimeout(function () {
-				$('.morphsearch input.morphsearch-input').focus();
+				$('#morphsearch > form > input.morphsearch-input').focus();
 			}, 500);
 		}
 	} );
@@ -96,6 +96,9 @@
 		// Output fsmsp_links_color.
 		$( '.dummy-media-object h3 a' ).css( 'color', '#b2b2b2' );
 
+		// Output fsmsp_search_form_text.
+		$( 'form.morphsearch-form' ).children().first().attr( 'placeholder', 'Search...' );
+
 	} else {
 
 		$( '#morphsearch, div.morphsearch-content' ).css( 'background-color', fsmsp_vars.fsmsp_main_backgroung_color );
@@ -122,6 +125,8 @@
 		});
 
 		$( '.dummy-media-object h3 a' ).css( 'color', fsmsp_vars.fsmsp_links_color );
+
+		$( 'form.morphsearch-form' ).children().first().attr( 'placeholder', fsmsp_vars.fsmsp_search_form_text );
 
 	}
 
