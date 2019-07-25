@@ -3,29 +3,31 @@
 */
 
 /* 1- hide the main div (<div id="morphsearch" class="morphsearch">) containing the Morphing Search Page */
+
 .morphsearch {
-		visibility: hidden;
+	visibility: hidden;
 	width: 100%;
 	height: 100%;
 	background: #f1f1f1;
 	position: absolute;
-	z-index: 9;
-		top: 0;
-		right: 0;
+	z-index: 99997;
+	top: 0;
+	right: 0;
 	-webkit-transform-origin: 100% 0;
 	transform-origin: 100% 0;
 	-webkit-transition-property: min-height, width, top, right;
 	transition-property: min-height, width, top, right;
 	-webkit-transition-duration: 0.5s;
 	transition-duration: 0.5s;
-	-webkit-transition-timing-function: cubic-bezier(0.7,0,0.3,1);
-	transition-timing-function: cubic-bezier(0.7,0,0.3,1);
+	-webkit-transition-timing-function: cubic-bezier(0.7, 0, 0.3, 1);
+	transition-timing-function: cubic-bezier(0.7, 0, 0.3, 1);
 }
 
 /* 2- Showing the Morphing Search Page once the .open class is added to the main div  */
+
 .morphsearch.open {
-		visibility: visible;
-		opacity: 1;
+	visibility: visible;
+	opacity: 1;
 	width: 100%;
 	min-height: 100%;
 	top: 0px;
@@ -33,6 +35,7 @@
 }
 
 /* Morphing Search Page Search Form  */
+
 .morphsearch-form {
 	width: 100%;
 	height: 40px;
@@ -42,37 +45,39 @@
 	transition-property: width, height, transform;
 	-webkit-transition-duration: 0.5s;
 	transition-duration: 0.5s;
-	-webkit-transition-timing-function: cubic-bezier(0.7,0,0.3,1);
-	transition-timing-function: cubic-bezier(0.7,0,0.3,1);
+	-webkit-transition-timing-function: cubic-bezier(0.7, 0, 0.3, 1);
+	transition-timing-function: cubic-bezier(0.7, 0, 0.3, 1);
 }
 
 .morphsearch.open .morphsearch-form {
 	width: 80%;
 	height: 160px;
-	-webkit-transform: translate3d(0,3em,0);
-	transform: translate3d(0,3em,0);
+	-webkit-transform: translate3d(0, 3em, 0);
+	transform: translate3d(0, 3em, 0);
 }
 
 /* Morphing Search Page Search Input  */
+
 .morphsearch-input {
-	width: 100%;
-	height: 100%;
 	padding: 0 10% 0 10px !important;
 	font-weight: 700;
 	border: none !important;
 	background: transparent !important;
 	font-size: 0.8em;
-	/*color: #ec5a62 !important;*/
-	-webkit-transition: font-size 0.5s cubic-bezier(0.7,0,0.3,1);
-	transition: font-size 0.5s cubic-bezier(0.7,0,0.3,1);
+	-webkit-transition: font-size 0.5s cubic-bezier(0.7, 0, 0.3, 1);
+	transition: font-size 0.5s cubic-bezier(0.7, 0, 0.3, 1);
 }
 
 #morphsearch .morphsearch-input {
+	width: 100%;
+	height: 100%;
+	font-style: italic;
 	color: #ec5a62;
 	/* Using ID '#morphsearch' to avoid using !important */
 }
 
-.morphsearch-input::-ms-clear { /* remove cross in IE */
+.morphsearch-input::-ms-clear {
+	/* remove cross in IE */
 	display: none;
 }
 
@@ -81,6 +86,7 @@
 }
 
 /* Morphing Search Page Search Placeholder */
+
 .morphsearch-input::-webkit-input-placeholder {
 	color: var(--morphsearch-input-placeholder, #c2c2c2);
 }
@@ -98,18 +104,20 @@
 }
 
 /* hide placeholder when active in Chrome */
+
 .gn-search:focus::-webkit-input-placeholder {
 	color: transparent;
 }
 
-input[type="search"] { /* reset normalize */
-	-webkit-box-sizing: border-box; 
-	box-sizing: border-box;	
+input[type="search"] {
+	/* reset normalize */
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 /* Morphing Search Page Submit Button */
-.morphsearch-input:focus,
-.morphsearch-submit:focus {
+
+.morphsearch-input:focus, .morphsearch-submit:focus {
 	outline: none;
 	background: transparent;
 	border: none;
@@ -131,28 +139,29 @@ input[type="search"] { /* reset normalize */
 	pointer-events: none;
 	transform-origin: 50% 50%;
 	opacity: 0;
-	-webkit-transform: translate3d(-30px,-50%,0) scale3d(0,0,1);
-	transform: translate3d(-30px,-50%,0) scale3d(0,0,1);
-		box-shadow: none;
+	-webkit-transform: translate3d(-30px, -50%, 0) scale3d(0, 0, 1);
+	transform: translate3d(-30px, -50%, 0) scale3d(0, 0, 1);
+	box-shadow: none;
 }
 
 .morphsearch.open .morphsearch-submit {
 	pointer-events: auto;
 	opacity: 1;
-	-webkit-transform: translate3d(-30px,-50%,0) scale3d(1,1,1);
-	transform: translate3d(-30px,-50%,0) scale3d(1,1,1);
+	-webkit-transform: translate3d(-30px, -50%, 0) scale3d(1, 1, 1);
+	transform: translate3d(-30px, -50%, 0) scale3d(1, 1, 1);
 	-webkit-transition: opacity 0.3s, -webkit-transform 0.3s;
 	transition: opacity 0.3s, transform 0.3s;
 	-webkit-transition-delay: 0.5s;
 	transition-delay: 0.5s;
 }
 
-.morphsearch-submit:hover{
+.morphsearch-submit:hover {
 	background-color: transparent;
 	box-shadow: none;
 }
 
 /* 3- Hidding the Morphing Search Page once the .close class is added to the main div  */
+
 .morphsearch-close {
 	width: 36px;
 	height: 36px;
@@ -164,23 +173,22 @@ input[type="search"] { /* reset normalize */
 	cursor: pointer;
 	pointer-events: none;
 	opacity: 0;
-	-webkit-transform: scale3d(0,0,1);
-	transform: scale3d(0,0,1);
+	-webkit-transform: scale3d(0, 0, 1);
+	transform: scale3d(0, 0, 1);
 }
 
 .morphsearch.open .morphsearch-close {
 	opacity: 1;
 	pointer-events: auto;
-	-webkit-transform: scale3d(1,1,1);
-	transform: scale3d(1,1,1);
+	-webkit-transform: scale3d(1, 1, 1);
+	transform: scale3d(1, 1, 1);
 	-webkit-transition: opacity 0.3s, -webkit-transform 0.3s;
 	transition: opacity 0.3s, transform 0.3s;
 	-webkit-transition-delay: 0.5s;
 	transition-delay: 0.5s;
 }
 
-.morphsearch-close::before,
-.morphsearch-close::after {
+.morphsearch-close::before, .morphsearch-close::after {
 	content: '';
 	position: absolute;
 	width: 2px;
@@ -193,8 +201,7 @@ input[type="search"] { /* reset normalize */
 	/* @see https://stackoverflow.com/a/49618941/6837428 */
 }
 
-.morphsearch-close:hover.morphsearch-close::before,
-.morphsearch-close:hover.morphsearch-close::after {
+.morphsearch-close:hover.morphsearch-close::before, .morphsearch-close:hover.morphsearch-close::after {
 	opacity: 1;
 }
 
@@ -219,13 +226,16 @@ input[type="search"] { /* reset normalize */
 	position: absolute;
 	pointer-events: none;
 	opacity: 0;
+	z-index: auto;
 }
 
 /* Morphing Search Page Content */
+
 .morphsearch.open .morphsearch-content {
 	opacity: 1;
 	height: auto;
-	overflow: visible; /* this breaks the transition of the children in FF: https://bugzilla.mozilla.org/show_bug.cgi?id=625289 */
+	overflow: visible;
+	/* this breaks the transition of the children in FF: https://bugzilla.mozilla.org/show_bug.cgi?id=625289 */
 	pointer-events: auto;
 	-webkit-transition: opacity 0.3s 0.5s;
 	transition: opacity 0.3s 0.5s;
@@ -236,7 +246,7 @@ input[type="search"] { /* reset normalize */
 	padding: 0 0 6em;
 	float: left;
 	opacity: 0;
-	-webkit-transform: translate3d(0,100px,0);
+	-webkit-transform: translate3d(0, 100px, 0);
 	transform: translateY(100px);
 	-webkit-transition: -webkit-transform 0.5s, opacity 0.5s;
 	transition: transform 0.5s, opacity 0.5s;
@@ -259,8 +269,8 @@ input[type="search"] { /* reset normalize */
 
 .morphsearch.open .dummy-column {
 	opacity: 1;
-	-webkit-transform: translate3d(0,0,0);
-	transform: translate3d(0,0,0);
+	-webkit-transform: translate3d(0, 0, 0);
+	transform: translate3d(0, 0, 0);
 }
 
 .dummy-column:nth-child(2) {
@@ -287,11 +297,9 @@ input[type="search"] { /* reset normalize */
 	cursor: pointer;
 	border-radius: 5px;
 	background: #ebebeb;
-	
 }
 
-.dummy-media-object:hover,
-.dummy-media-object:focus {
+.dummy-media-object:hover, .dummy-media-object:focus {
 	background: #e4e4e5;
 }
 
@@ -318,6 +326,7 @@ input[type="search"] { /* reset normalize */
 }
 
 /* Morphing Search Page Media Queries */
+
 @media screen and (max-width: 53.125em) {
 	.morphsearch-input {
 		padding: 0 25% 0 10px;
@@ -334,8 +343,8 @@ input[type="search"] { /* reset normalize */
 		margin: 0;
 	}
 	.morphsearch.open .morphsearch-submit {
-		-webkit-transform: translate3d(0,-50%,0) scale3d(0.5,0.5,1);
-		transform: translate3d(0,-50%,0) scale3d(0.5,0.5,1);
+		-webkit-transform: translate3d(0, -50%, 0) scale3d(0.5, 0.5, 1);
+		transform: translate3d(0, -50%, 0) scale3d(0.5, 0.5, 1);
 	}
 }
 
@@ -361,12 +370,13 @@ input[type="search"] { /* reset normalize */
 }
 
 /* Autocomplete dropdown box styles */
+
 .ui-autocomplete {
 	width: 80% !important;
-		overflow-wrap: break-word;
+	overflow-wrap: break-word;
 	box-shadow: 2px 2px 3px #888888;
-		background: #FFF;
-		z-index: 10;
+	background: #FFF;
+	z-index: 99998;
 }
 
 .ui-menu-item {
