@@ -93,30 +93,30 @@ I'll be adding some more cool functions with time.
 ## Screenshots
 
 ### Full Screen Morphing Search Plugin Screenshot
-![Full Screen Morphing Search Plugin Screenshot](https://plugins.svn.wordpress.org/full-screen-morphing-search/assets/screenshot-1.png "Full Screen Morphing Search Plugin Screenshot")
+![Full Screen Morphing Search Plugin Screenshot](https://github.com/LebCit/fsms-screenshots/blob/master/screenshot-1.png "Full Screen Morphing Search Plugin Screenshot")
 As you can see, their is a search form a close button and three columns.  
 The first column shows the most 5 recent posts.  
 The second column shows the top 5 used categories and how many posts each category has.  
 The third column shows the top 5 used tags and how many posts each tag has.
 
 ### FSMS Plugin in the Customizer
-![FSMS Plugin in the Customizer](https://plugins.svn.wordpress.org/full-screen-morphing-search/assets/screenshot-2.png "FSMS Plugin in the Customizer")
+![FSMS Plugin in the Customizer](https://github.com/LebCit/fsms-screenshots/blob/master/screenshot-2.png "FSMS Plugin in the Customizer")
 FSMS Plugin in the Customizer.
 
 ### Posts with no Featured Image defined
-![Posts with no Featured Image defined](https://plugins.svn.wordpress.org/full-screen-morphing-search/assets/screenshot-3.png "Posts with no Featured Image defined")
+![Posts with no Featured Image defined](https://github.com/LebCit/fsms-screenshots/blob/master/screenshot-3.png "Posts with no Featured Image defined")
 Posts with no Featured Image defined.
 
 ### Change the default icons and choose to make the new Icon/Image Round or Not !
-![Change the default icons](https://plugins.svn.wordpress.org/full-screen-morphing-search/assets/screenshot-4.png "Change the default icons")
+![Change the default icons](https://github.com/LebCit/fsms-screenshots/blob/master/screenshot-4.png "Change the default icons")
 Change the default icons and choose to make the new Icon/Image Round or Not !
 
 ### First type something in the input text field, then change the input text color.
-![Change the input text color](https://plugins.svn.wordpress.org/full-screen-morphing-search/assets/screenshot-5.png "Change the input text color")
+![Change the input text color](https://github.com/LebCit/fsms-screenshots/blob/master/screenshot-5.png "Change the input text color")
 First type something in the input text field, then change the input text color.
 
 ### Old screenshot
-![Old screenshot](https://plugins.svn.wordpress.org/full-screen-morphing-search/assets/screenshot-6.png "Old screenshot")
+![Old screenshot](https://github.com/LebCit/fsms-screenshots/blob/master/screenshot-6.png "Old screenshot")
 Old screenshot.
 
 ## Changelog
