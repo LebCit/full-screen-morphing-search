@@ -12,11 +12,13 @@ Responsive Full Screen Morphing Search Page Overlay With Predictive Autocomplete
 
 ## Description
 
-**PLEASE, MAKE SURE TO HAVE AT LEAST ONE POST WITH ONE CATEGORY AND ONE TAG BEFORE ACTIVATING**
+**PLEASE, MAKE SURE TO HAVE AT LEAST ONE POST WITH ONE CATEGORY AND ONE TAG BEFORE ACTIVATING**  
+Zipped : V2.7 -> 683Ko / V3.0 -> 33.6Ko !  
+MUCH LIGHTER, but STRONGER than ever !
 
 Effect for any WordPress search input that morphs into a fullscreen overlay.  
 Enlarge the search input and show 5 most recent posts, 5 most used categories and tags with counter.  
-Once the input is clicked, the whole search element expands to a fullscreen overlay.  
+Once a search input is clicked, the whole search element expands to a fullscreen overlay.  
 The fullscreen overlay has a bigger search input.
 
 There are no settings for this plugin. Simply activate it, click on any search input and see the magic happens !
@@ -118,6 +120,9 @@ First type something in the input text field, then change the input text color.
 Old screenshot.
 
 ## Changelog
+
+### 3.0 =
+* Plugin rewritten from ground up.
 
 ### 2.7 =
 * Corrected Undefined Index 'fsmsp_search_form_text'.
