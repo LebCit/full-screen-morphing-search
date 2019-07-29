@@ -4,7 +4,7 @@ Tags: search, full screen search, morphing search, search overlay,  jQuery UI au
 Requires at least: 4.1.0
 Tested up to: 5.2.2
 Requires PHP: 5.6
-Stable tag: 3.0
+Stable tag: 3.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -108,6 +108,9 @@ The third column shows the top 5 used tags and how many posts each tag has.
 6. Old screenshot.
 
 == Changelog ==
+
+= 3.1 =
+* Optimized search input target.
 
 = 3.0 =
 * Plugin rewritten from ground up.
