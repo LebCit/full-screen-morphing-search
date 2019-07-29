@@ -1,8 +1,11 @@
 // When the document is ready...
 ( function( $ ) {
 
+	// Target any search input containing any default [attribute=value] of get_search_form().
+	let $searchInput = $( 'form' ).find('input').filter( '[type=search], [class=search-field], [name=s], [id=s]' );
+
 	// Display the Full Screen search when The user focuses on a search field.
-	$( 'form[role=search] input, form input[id=s]' ).on( 'focus', function( event ) {
+	$searchInput.on( 'focus', function( event ) {
 		// Prevent the default action.
 		event.preventDefault();
 
@@ -13,9 +16,9 @@
 		 * 1- Focus on the Full Screen Morphing Search Input Field, but not if the site is being previewed in the Customizer.
 		 * This first decision was taken because of weird behaviour in Chrome and Edge...
 		 * 2- Focusing on the input of Full Screen Morphing Search Input Field by a setTimeout() to avoid a recursive function. 
-		 * The main function is called upon 'focus' on any $( 'form[role=search] input, form input[id=s]' ),
+		 * The main function is called upon 'focus' on any $searchInput,
 		 * so if we focus directly on the .morphsearch-input it will be a recursive function
-		 * since the two inputs are in a 'form[role=search] and/ or form input[id=s]' !
+		 * since the two inputs are in a $searchInput !
 		 * Recursive function :@see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors/Too_much_recursion
 		 * 
 		 * The Customizer preview part is handled by a MutationObserver in customize-preview.js !
@@ -34,7 +37,7 @@
 		event.preventDefault();
 
 		// Hide the Morphing Search Page.
-		$( 'form[role=search] input, form input[id=s]' ).blur();
+		$searchInput.blur();
 		$( '.morphsearch' ).removeClass( 'open' );
 	} );
 
@@ -45,13 +48,13 @@
 	 * when we press the Esc button .morphsearch will close then reopen.
 	 * Since it's focus(), pressing on Esc will close it but send another focus() after 500ms !
 	 * To prevent this behaviour when the Esc button is pressed,
-	 * we blur() all $( 'form[role=search] input, form input[id=s]' ) including $('.morphsearch input.morphsearch-input'),
+	 * we blur() all $searchInput including $('.morphsearch input.morphsearch-input'),
 	 * then we removeClass('open') from $('.morphsearch').
 	 * 
 	 */
 	$( '.morphsearch' ).on( 'keydown' , function( event ) {
 		if ( event.keyCode === 27 && !fsmsp_vars.fsmsp_is_customize_preview ) {
-			$( 'form[role=search] input, form input[id=s]' ).blur();
+			$searchInput.blur();
 			$( '.morphsearch' ).removeClass( 'open' );
 		}
 	});
