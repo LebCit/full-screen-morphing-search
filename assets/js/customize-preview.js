@@ -8,8 +8,8 @@
 
 ( function( $ ) {
 
-	// FSMS Main Backgroung Color.
-	wp.customize( 'fsmsp_options[fsmsp_main_backgroung_color]', function( value ) {
+	// FSMS Main Background Color.
+	wp.customize( 'fsmsp_options[fsmsp_main_background_color]', function( value ) {
 		value.bind( function( newval ) {
 			$( '#morphsearch, div.morphsearch-content' ).css( 'background-color', newval );
 		} );
@@ -100,7 +100,7 @@
 
 	/**
 	 * MutationObserver to display the default placeholder text (search...),
-	 * when the user erases all charachters of his text in the FSMS Search Form Text option.
+	 * when the user erases all characters of his text in the FSMS Search Form Text option.
 	 */
 	let targetNodePhTxt = $( "input.morphsearch-input" )[0]; // Get the Node element.
 	let observerPhTxt = new MutationObserver( callbackPhTxt );

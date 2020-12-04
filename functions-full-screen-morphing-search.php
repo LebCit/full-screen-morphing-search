@@ -102,10 +102,10 @@ function full_screen_morphing_search_customize_register( $wp_customize ) {
 	);
 
 	// =====================================
-	// = FSMS Main Backgroung Color Picker =
+	// = FSMS Main Background Color Picker =
 	// =====================================
 	$wp_customize->add_setting(
-		'fsmsp_options[fsmsp_main_backgroung_color]',
+		'fsmsp_options[fsmsp_main_background_color]',
 		array(
 			'default'           => '#f1f1f1',
 			'sanitize_callback' => 'sanitize_hex_color',
@@ -119,12 +119,12 @@ function full_screen_morphing_search_customize_register( $wp_customize ) {
 	$wp_customize->add_control(
 		new WP_Customize_Color_Control(
 			$wp_customize,
-			'fsmsp_options[fsmsp_main_backgroung_color]',
+			'fsmsp_options[fsmsp_main_background_color]',
 			array(
-				'label'       => __( 'FSMS Main Backgroung Color', 'full-screen-morphing-search' ),
+				'label'       => __( 'FSMS Main Background Color', 'full-screen-morphing-search' ),
 				'description' => esc_attr__( 'Change the main background color', 'full-screen-morphing-search' ),
 				'section'     => 'fsmsp_color',
-				'settings'    => 'fsmsp_options[fsmsp_main_backgroung_color]',
+				'settings'    => 'fsmsp_options[fsmsp_main_background_color]',
 			)
 		)
 	);

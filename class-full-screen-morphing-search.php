@@ -78,7 +78,7 @@ class Full_Screen_Morphing_Search {
 			array(
 				'fsmsp_is_customize_preview'           => is_customize_preview(),
 				'fsmsp_options_does_not_exists'        => $fsmsp_options_does_not_exists,
-				'fsmsp_main_backgroung_color'          => esc_attr( ( ! empty( $fsmsp_options['fsmsp_main_backgroung_color'] ) ? $fsmsp_options['fsmsp_main_backgroung_color'] : '#f1f1f1' ) ),
+				'fsmsp_main_background_color'          => esc_attr( ( ! empty( $fsmsp_options['fsmsp_main_background_color'] ) ? $fsmsp_options['fsmsp_main_background_color'] : '#f1f1f1' ) ),
 				'fsmsp_close_icon_color'               => esc_attr( ( ! empty( $fsmsp_options['fsmsp_close_icon_color'] ) ? $fsmsp_options['fsmsp_close_icon_color'] : '#000' ) ),
 				'fsmsp_search_text_color'              => esc_attr( ( ! empty( $fsmsp_options['fsmsp_search_text_color'] ) ? $fsmsp_options['fsmsp_search_text_color'] : '#c2c2c2' ) ),
 				'fsmsp_input_text_color'               => esc_attr( ( ! empty( $fsmsp_options['fsmsp_input_text_color'] ) ? $fsmsp_options['fsmsp_input_text_color'] : '#ec5a62' ) ),

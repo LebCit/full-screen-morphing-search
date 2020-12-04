@@ -65,7 +65,7 @@
 	// Output default options' values !
 	if ( fsmsp_vars.fsmsp_options_does_not_exists ) {
 
-		// Output fsmsp_main_backgroung_color.
+		// Output fsmsp_main_background_color.
 		$( '#morphsearch, div.morphsearch-content' ).css( 'background-color', '#f1f1f1' );
 
 		// Output fsmsp_close_icon_color.
