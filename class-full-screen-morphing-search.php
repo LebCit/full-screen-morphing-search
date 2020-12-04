@@ -137,15 +137,15 @@ class Full_Screen_Morphing_Search {
 							<?php
 							if ( has_post_thumbnail() ) {
 								?>
-							<a href="<?php echo the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
+							<a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
 								<?php
 							} else {
 								?>
-							<a href="<?php echo the_permalink(); ?>" class="fsmsp-article-link" title="<?php the_title_attribute(); ?>">
+							<a href="<?php the_permalink(); ?>" class="fsmsp-article-link" title="<?php the_title_attribute(); ?>">
 								<?php
 							}
 							if ( has_post_thumbnail() ) {
-								echo the_post_thumbnail( 'full-screen-morphing-search-plugin-thumb', array( 'class' => 'round' ) );
+								the_post_thumbnail( 'full-screen-morphing-search-plugin-thumb', array( 'class' => 'round' ) );
 							} else {
 								if ( empty( $fsmsp_options['fsmsp_article_icon'] ) ) {
 									echo '<img src="' . esc_url( plugins_url( 'assets/img/article.png', __FILE__ ) ) . '" >';
@@ -257,14 +257,14 @@ class Full_Screen_Morphing_Search {
 
 				$posts = get_posts( $fsmsp_ac );
 
-		if ( $posts ) :
-			foreach ( $posts as $k => $post ) {
-				$source[ $k ]['ID']        = $post->ID;
-				$source[ $k ]['label']     = $post->post_title; // The name of the post.
-				$source[ $k ]['permalink'] = get_permalink( $post->ID );
-			}
+				if ( $posts ) :
+					foreach ( $posts as $k => $post ) {
+						$source[ $k ]['ID']        = $post->ID;
+						$source[ $k ]['label']     = $post->post_title; // The name of the post.
+						$source[ $k ]['permalink'] = get_permalink( $post->ID );
+					}
 
-			?>
+					?>
 				<script type="text/javascript">
 					jQuery(document).ready(function($){
 						var posts = <?php echo wp_json_encode( array_values( $source ) ); ?>;
@@ -278,7 +278,7 @@ class Full_Screen_Morphing_Search {
 						});
 					});
 				</script>
-				<?php
+					<?php
 		endif;
 
 	}
