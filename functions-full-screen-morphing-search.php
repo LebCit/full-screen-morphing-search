@@ -662,7 +662,7 @@ function full_screen_morphing_search_article_icon() {
 	$image_url         = get_option( 'fsmsp_options' )['fsmsp_article_icon'];
 	$attachment_id     = attachment_url_to_postid( $image_url ); // Tries to convert an attachment URL into a post ID.
 	$article_i_classes = get_option( 'fsmsp_options' )['fsmsp_article_i_classes'];
-	$classes;
+	$classes           = '';
 	if ( ! empty( $article_i_classes ) ) {
 		$classes = 'round fsmsp-article-icon';
 	} else {
@@ -678,7 +678,7 @@ function full_screen_morphing_search_category_icon() {
 	$imagecat_url       = get_option( 'fsmsp_options' )['fsmsp_category_icon'];
 	$attachmentcat_id   = attachment_url_to_postid( $imagecat_url );
 	$category_i_classes = get_option( 'fsmsp_options' )['fsmsp_category_i_classes'];
-	$classes;
+	$classes            = '';
 	if ( ! empty( $category_i_classes ) ) {
 		$classes = 'round fsmsp-category-icon';
 	} else {
@@ -694,7 +694,7 @@ function full_screen_morphing_search_tag_icon() {
 	$imagetag_url     = get_option( 'fsmsp_options' )['fsmsp_tag_icon'];
 	$attachmenttag_id = attachment_url_to_postid( $imagetag_url );
 	$tag_i_classes    = get_option( 'fsmsp_options' )['fsmsp_tag_i_classes'];
-	$classes;
+	$classes          = '';
 	if ( ! empty( $tag_i_classes ) ) {
 		$classes = 'round fsmsp-tag-icon';
 	} else {
