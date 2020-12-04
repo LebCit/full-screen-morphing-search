@@ -2,7 +2,7 @@
 ( function( $ ) {
 
 	// Target any search input containing any default [attribute=value] of get_search_form().
-	let $searchInput = $( 'form' ).find('input').filter( '[type=search], [class=search-field], [name=s], [id=s]' );
+	let $searchInput = $( 'form' ).find( 'input, button' ).filter( '[type=search], [class=search-field], [name=s], [id=s], [type=submit]' );
 
 	// Display the Full Screen search when The user focuses on a search field.
 	$searchInput.on( 'focus', function( event ) {
@@ -59,8 +59,8 @@
 		}
 	});
 
-	// Reset Morphing Search Input Value to Search...
-	$( 'input.search-field' ).val('');
+	// Clear Search Input Value
+	$( 'input' ).filter( '[name=s]' ).val('');
 
 	// Output default options' values !
 	if ( fsmsp_vars.fsmsp_options_does_not_exists ) {
@@ -106,7 +106,7 @@
 
 	} else {
 
-		$( '#morphsearch, div.morphsearch-content' ).css( 'background-color', fsmsp_vars.fsmsp_main_backgroung_color );
+		$( '#morphsearch, div.morphsearch-content' ).css( 'background-color', fsmsp_vars.fsmsp_main_background_color );
 
 		document.querySelectorAll( 'span.morphsearch-close' )[0].style.setProperty( "--morphsearch-close-background", fsmsp_vars.fsmsp_close_icon_color );
 
