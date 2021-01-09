@@ -14,6 +14,16 @@ function full_screen_morphing_search_thumb() {
 add_action( 'init', 'full_screen_morphing_search_thumb' );
 
 /**
+ * Load autoComplete scripts in header.
+ *
+ * @since 3.3
+ */
+function fsmsp_load_autocomplete() {
+	wp_enqueue_script( 'autocomplete', plugins_url( 'assets/js/autoComplete.min.js', __FILE__ ), array(), '8.2.1', false );
+}
+add_action( 'wp_enqueue_scripts', 'fsmsp_load_autocomplete' );
+
+/**
  * This outputs the javascript needed to automate the live settings preview.
  * Also keep in mind that this function isn't necessary unless your settings
  * are using 'transport'=>'postMessage' instead of the default 'transport'

@@ -259,16 +259,18 @@ class Full_Screen_Morphing_Search {
 
 					?>
 				<script type="text/javascript">
-					jQuery(document).ready(function($){
-						var posts = <?php echo wp_json_encode( array_values( $source ) ); ?>;
-						jQuery( 'input[name="s"]' ).autocomplete({
-							source: posts,
-							minLength: 2,
-							select: function(event, ui) {
-								var permalink = ui.item.permalink; // Get permalink from the datasource.
-								window.location.replace(permalink);
-							}
-						});
+					let posts = <?php echo wp_json_encode( array_values( $source ) ); ?>;
+					new autoComplete({
+						data: {
+						src: posts,
+						key: ["label"],
+						cache: false
+						},
+						selector: "#morphsearch-input",
+						onSelection: feedback => {
+							let permalink = feedback.selection.value.permalink; // Get permalink from the datasource.
+							window.location.replace(permalink);
+						}
 					});
 				</script>
 					<?php
