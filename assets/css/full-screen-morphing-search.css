@@ -245,7 +245,7 @@ input[type="search"] {
     position: absolute;
     pointer-events: none;
     opacity: 0;
-    z-index: auto;
+    z-index: -1;
 }
 
 /* Morphing Search Page Content */
