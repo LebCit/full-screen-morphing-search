@@ -1,12 +1,12 @@
 === Full Screen Morphing Search ===
 Contributors: lebcit
-Tags: search, full screen search, morphing search, search overlay,  jQuery UI autocomplete
+Tags: search, full screen search, morphing search, search overlay,  autocomplete
 Requires at least: 4.1.0
-Tested up to: 5.5.3
+Tested up to: 5.6
 Requires PHP: 5.6
-Stable tag: 3.2
+Stable tag: 3.3
 License: GPLv2 or later
-License URI: https://www.gnu.org/licenses/gpl-2.0.html
+License URI: https://spdx.org/licenses/GPL-2.0-or-later.html
 
 Responsive Full Screen Morphing Search Page Overlay With Predictive Autocomplete !
 
@@ -28,20 +28,18 @@ You can change colors, search placeholder's text and default icons with a stylin
 
 Don't forget to take a look at the <a href="https://wordpress.org/plugins/full-screen-morphing-search/faq/" title="Frequently Asked Questions">FAQ</a> Section.  
 If you have some issues **don't hesitate**, head over to the <a href="https://wordpress.org/support/plugin/full-screen-morphing-search" title="Support">Support</a> Section !  
-You can also visit my site <a href="https://lebcit.tk" title="LebCit.Tk">LebCit.Tk</a> to see the plugin in action and leave your comments.  
 If you use this plugin, please consider leaving a <a href="https://wordpress.org/support/plugin/full-screen-morphing-search/reviews/" title="Reviews">Review</a> to give me a push forward ;)
 
 = Credits =
 
-This plugin is created by <a href="http://tympanus.net/codrops/author/crnacura/" rel="author" title="Manoela Ilic" target="_blank">Manoela Ilic</a> and adapted for WordPress by <a href="https://profiles.wordpress.org/lebcit/" rel="author" title="LebCit" target="_blank">LebCit</a>.
+This plugin is created by <a href="http://tympanus.net/codrops/author/crnacura/" rel="author" title="Manoela Ilic" target="_blank">Manoela Ilic</a> and ported to WordPress by <a href="https://profiles.wordpress.org/lebcit/" rel="author" title="LebCit" target="_blank">LebCit</a>.
 If you want to learn more about this plugin, visit the <a href="http://tympanus.net/codrops/2014/11/04/simple-morphing-search/" title="Simple Morphing Search" target="_blank">Simple Morphing Search</a> original post.  
 > A <a href="https://wordpress.org/plugins/full-screen-morphing-search/#screenshots" title="Screenshots">Picture</a> is worth a thousand words
 
 I think that a demo is even better !  
 See how <a href="http://tympanus.net/Development/MorphingSearch/" title="Full Screen Morphing Search" target="_blank">Full Screen Morphing Search</a> works.
 
-The jQuery UI autocompletition implemented in this plugin is based on Dominykas Gelucevičius post :  
-<a href="http://dominykasgel.com/how-to-create-jquery-autocomplete-dropdown/">How to create a jQuery autocomplete drop down in WordPress</a>
+The autocompletition implemented in this plugin is based on <a href="https://github.com/TarekRaafat/autoComplete.js" title="autoComplete.js" target="_blank">autoComplete.js</a> by <a href="https://github.com/TarekRaafat" title="Tarek Raafat" target="_blank">Tarek Raafat</a> under the <a href="https://opensource.org/licenses/Apache-2.0" title="Apache License, Version 2.0" target="_blank">Apache 2.0</a> License.
 
 The main plugin icon is made by <a href="http://www.flaticon.com/authors/pixel-buddha" title="Pixel Buddha">Pixel Buddha</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> and is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a>  
 The article icon is made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> and is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a>  
@@ -85,6 +83,13 @@ First make sure that you have used a thumbnail regenerator, see first FAQ.
 Then, click on the checkbox option **Icon/Image Round or Not ?!**  
 If the new Icon/Image is already round (like the default one of category and tag), this option will have no effect !
 
+= Hitting Enter key doesn't fire a search ! =
+
+**As long as** the autocompletition gives results as you type,  
+the Enter key will only work on given results.  
+If you wish to ignore given results and fire a search query,  
+type your search then just click on the search icon.
+
 = Autocomplete predicts only posts and pages ! =
 
 Yes, just for now !  
@@ -108,6 +113,14 @@ The third column shows the top 5 used tags and how many posts each tag has.
 6. Old screenshot.
 
 == Changelog ==
+
+= 3.3 =
+* Add autoComplete.js to plugin.
+* Force thumbnails size.
+* Main JS file without jQuery only vanilla JS.
+* Move .morphsearch-content below autocomplete <ul>.
+* Removing jQuery dependencies.
+* Tested up to version 5.6 of WordPress.
 
 = 3.2 =
 * Added empty value for $classes.

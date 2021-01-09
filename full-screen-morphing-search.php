@@ -2,12 +2,12 @@
 /**
  * Plugin Name: Full Screen Morphing Search
  * Plugin URI: http://tympanus.net/codrops/2014/11/04/simple-morphing-search/
- * Version: 3.2
+ * Version: 3.3
  * Author: LebCit
  * Author URI: https://lebcit.tk/
  * Text Domain: full-screen-morphing-search
- * License:      GPL2
- * License URI:  https://www.gnu.org/licenses/gpl-2.0.html
+ * License:      GPL-2.0-or-later
+ * License URI:  https://spdx.org/licenses/GPL-2.0-or-later.html
  * Description: Effect for any WordPress search input that morphs into a fullscreen overlay.
  *
  * This program is free software; you can redistribute it and/or modify
