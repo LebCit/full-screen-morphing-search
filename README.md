@@ -4,7 +4,7 @@ Tags: search, full screen search, morphing  search, search overlay,  autocomplet
 Requires at least: 4.1.0  
 Tested up to: 5.6  
 Requires PHP: 5.6  
-Stable tag: 3.3  
+Stable tag: 3.4  
 License: GPLv2 or later  
 License URI: https://spdx.org/licenses/GPL-2.0-or-later.html
 
@@ -29,6 +29,11 @@ You can change colors, search placeholder's text and default icons with a stylin
 Don't forget to take a look at the <a href="https://wordpress.org/plugins/full-screen-morphing-search/faq/" title="Frequently Asked Questions">FAQ</a> Section.  
 If you have some issues **don't hesitate**, head over to the <a href="https://wordpress.org/support/plugin/full-screen-morphing-search" title="Support">Support</a> Section !  
 If you use this plugin, please consider leaving a <a href="https://wordpress.org/support/plugin/full-screen-morphing-search/reviews/" title="Reviews">Review</a> to give me a push forward ;)
+
+## Upgrade Notice
+
+### 3.4 =
+* Actual stable plugin version.
 
 ## Credits
 
@@ -125,6 +130,9 @@ First type something in the input text field, then change the input text color.
 Old screenshot.
 
 ## Changelog
+
+### 3.4 =
+* Corrected file upload
 
 ### 3.3 =
 * Add autoComplete.js to plugin.

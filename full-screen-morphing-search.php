@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Full Screen Morphing Search
  * Plugin URI: http://tympanus.net/codrops/2014/11/04/simple-morphing-search/
- * Version: 3.3
+ * Version: 3.4
  * Author: LebCit
  * Author URI: https://lebcit.tk/
  * Text Domain: full-screen-morphing-search
