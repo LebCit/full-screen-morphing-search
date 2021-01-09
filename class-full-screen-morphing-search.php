@@ -55,13 +55,6 @@ class Full_Screen_Morphing_Search {
 		// Load CSS.
 		wp_enqueue_style( $this->plugin->name, $this->plugin->url . 'assets/css/full-screen-morphing-search.css', array(), '1.0', false );
 
-		// Require WordPress jQuery.
-		wp_enqueue_script( 'jquery' );
-
-		// Require jquery-ui-core and jquery-ui-autocomplete for autocompletition search !
-		wp_enqueue_script( 'jquery-ui-core' );
-		wp_enqueue_script( 'jquery-ui-autocomplete' );
-
 		// Load Javascript.
 		wp_enqueue_script( $this->plugin->name, $this->plugin->url . 'assets/js/full-screen-morphing-search.js', array( 'jquery' ), '1.0', true );
 
@@ -109,7 +102,7 @@ class Full_Screen_Morphing_Search {
 			<div id="morphsearch" class="morphsearch">
 				<span class="morphsearch-close"></span>
 				<form role="search" class="morphsearch-form" method="get" action="<?php echo esc_url( home_url( '/' ) ); ?>">
-					<input required type="search" class="morphsearch-input" name="s" placeholder="" value=""/>
+					<input required id="morphsearch-input" type="search" class="morphsearch-input" name="s" placeholder="" value=""/>
 					<button id="morphsearch-submit" class="morphsearch-submit" type="submit">
 						<?php
 						$response = wp_remote_get( 'https://plugins.svn.wordpress.org/full-screen-morphing-search/trunk/assets/img/magnifier.svg' );
